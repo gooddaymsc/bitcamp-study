@@ -1,2 +1,2 @@
 package com.eomcs.lang.ex01;
-class Exam0110 {}
+public class Exam0220x {}
