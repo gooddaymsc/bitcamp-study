@@ -1,7 +1,11 @@
 package com.eomcs.lang.ex03;
 
+//# 리터럴(literal)
+//- 자바 언어로 표현한 값.
+//
+
 public class Exam0100 {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
     System.out.println("-------- 정수 리터럴");
     System.out.println(78); // 10진수
     System.out.println(+78);
@@ -23,5 +27,5 @@ public class Exam0100 {
     
     System.out.println("-------- 문자열 리터럴");
     System.out.println("오호라 코딩스쿨!");
-    }
+  }
 }
