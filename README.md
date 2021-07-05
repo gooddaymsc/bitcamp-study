@@ -14,3 +14,6 @@
 
 ## 5일차
 - eclipse 설치 및 셋팅, study-project import를 위한 Gradle을 이용하여 필수 파일 3개 생성 등
+
+## 6일차
+- mini-pms-02-a 예제, V/S Live share 설치 및 실행, 리터럴, 값과 메모리
