@@ -17,7 +17,7 @@ public class App {
   public static void main(String[] args) {
     System.out.println("[회원]");
 
-    final int MAX_LENGTH = 1000;
+    final int MAX_LENGTH = 100;
 
     int[] no = new int[MAX_LENGTH];
     String[] name = new String[MAX_LENGTH];
@@ -29,7 +29,7 @@ public class App {
 
     Scanner keyboardScan = new Scanner(System.in);
 
-    int score = 0;
+    int size = 0;
 
     for (int i = 0; i < MAX_LENGTH; i = i + 1) {
       System.out.print("번호? ");
@@ -45,21 +45,22 @@ public class App {
       System.out.print("전화? ");
       tel[i] = keyboardScan.nextLine();
       registerdDate[i] = new Date();
-
-      score = score + 1;
+      size = size + 1;
+      System.out.println();
 
       System.out.print("계속 입력하시겠습니까? (y/N)");
       String input = keyboardScan.nextLine();
       if (input.equalsIgnoreCase("N") || input.equals("")) {
         break;
       }
+      System.out.println();
     }
 
     keyboardScan.close(); // 데이터 입출력이 끝났으면 도구를 닫는다.
 
     System.out.println("--------------------------------");
 
-    for (int i = 0; i < score; i = i + 1) {
+    for (int i = 0; i < size; i = i + 1) {
       System.out.printf("%d, %s, %s, %s, %tY-%5$tm-%5$td\n", 
           no[i], 
           name[i], 

@@ -4,45 +4,65 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class App2 {
-  public static void main(String[] args) {
 
+  public static void main(String[] args) {
     System.out.println("[프로젝트]");
 
-    Scanner scan = new Scanner(System.in);
+    Scanner keyboardScan = new Scanner(System.in);
 
-    System.out.print("번호? ");
-    int no = scan.nextInt();
-    System.out.print(scan.nextLine());
+    final int MAX_LENGTH = 100;
 
-    System.out.print("프로젝트명? ");
-    String title = scan.nextLine();
+    int[] no = new int[MAX_LENGTH];
+    String[] title = new String[MAX_LENGTH];
+    String[] content = new String[MAX_LENGTH];
+    Date[] startDate = new Date[MAX_LENGTH];
+    Date[] endDate = new Date[MAX_LENGTH];
+    String[] owner = new String[MAX_LENGTH];
+    String[] members = new String[MAX_LENGTH];
 
-    System.out.print("내용? ");
-    String content = scan.nextLine();
+    int size = 0;
 
-    System.out.print("시작일? ");
-    Date startDate = Date.valueOf(scan.nextLine());
+    for (int i = 0; i < MAX_LENGTH; i++) {
+      System.out.print("번호? ");
+      no[i] = Integer.valueOf(keyboardScan.nextInt());
+      keyboardScan.nextLine(); // 번호 뒤에 남아 있는 줄바꿈 코드를 제거한다.
 
-    System.out.print("종료일? ");
-    Date endDate = Date.valueOf(scan.nextLine());
+      System.out.print("프로젝트명? ");
+      title[i] = keyboardScan.nextLine();
 
-    System.out.print("만든이? ");
-    String owner = scan.nextLine();
+      System.out.print("내용? ");
+      content[i] = keyboardScan.nextLine();
 
-    System.out.print("팀원? ");
-    String members = scan.nextLine();
+      System.out.print("시작일? ");
+      startDate[i] = Date.valueOf(keyboardScan.nextLine());
 
-    scan.close();
+      System.out.print("종료일? ");
+      endDate[i] = Date.valueOf(keyboardScan.nextLine());
 
-    System.out.println("--------------------------------------------");
+      System.out.print("만든이? ");
+      owner[i] = keyboardScan.nextLine();
 
+      System.out.print("팀원? ");
+      members[i] = keyboardScan.nextLine();
 
-    System.out.printf("번호: %d\n", no);
-    System.out.printf("프로젝트명: %s\n ", title);
-    System.out.printf("내용: %s\n", content);
-    System.out.printf("시작일: %s\n", startDate);
-    System.out.printf("종료일: %s\n", endDate);
-    System.out.printf("만든이: %s\n", owner);
-    System.out.printf("팀원: %s\n", members);
+      size++;
+      System.out.println();
+
+      System.out.print("계속 입력하시겠습니까?(y/N)");
+      String input = keyboardScan.nextLine();
+      if (!input.equalsIgnoreCase("y")) {
+        break;
+      }
+      System.out.println();
+    }
+
+    keyboardScan.close();
+
+    System.out.println("--------------------------------");
+
+    for (int i = 0; i < size; i++) {
+      System.out.printf("%d, %s, %s, %s, %s\n", 
+          no[i], title[i], startDate[i], endDate[i], members[i]);
+    }
   }
 }
