@@ -1,0 +1,77 @@
+8일차
+
+===========================================
+
+논리형 : boolean(1bit)
+문자형 : char2
+정수형 : byte1, short2, int4, long8
+실수형 : float4, double8
+
+1byte = ㅁㅁㅁㅁ ㅁㅁㅁㅁ(8bit) : 5v전기를 켜고 끄고 0, 1(2진수)
+ex) char = 2byte = 16bit = 2^16
+     int = 4byte = 32bit = 2^32
+
+산업공학 개발자
+물류자동화
+공장자동화
+
+=============to do======================
+
+자신을 소개하는 포트폴리오로 활용
+https://gooddaymsc.github.io/
+
+다양한 서비스를 메쉬업 하는 사이트로 활용(연출해라)
+ex ) 블로그 인스타 등등 링크업.
+
+============to do =======================
+
+1. 마크다운 활용하여 깃사이트 꾸미기
+2. 인스타 부계정 만들기 : gooddaymsc 으로. 개발용 연출
+
+============================================
+
+java.io.InputStream keyboard = System.in;
+  +
+java.util.Scanner keyScan = new java.util.Scanner(keyboard);
+  =>
+java.util.Scanner keyboard = new java.util.Scanner(System.in);
+                        ㄴ리모콘                               ㄴ 키보드 장비에서 끌어올꺼다.
+
+============================================
+
+nextInt()
+-> 1개의 토큰(token)을 읽을 때까지 기다린다.
+   ㄴ 양쪽에 공백으로(white space, space, tab, newline)분리된 문자열(단어)를 가리킨다.
+
+----------------to do ----------------------------------
+
+ Exam0230 이해하기... 이해해보기..
+
+---------------------------------------------------------
+
+use-case actor.... 오호.. 사람모양..
+
+---------------exam0240---------------------------
+
+nextInt() 다음에 nextLine()을 쓸때 일어나는 문제점을 해결하는 방법....
+
+int a = scan.nextInt( );
+String b = scan.next( );   :  .next( )는 토큰을 한개씩 끊어서 사용한다.
+
+=================================================
+
+
+----------------exam0260---------------------------
+
+그냥 next() 메소드를 사용하면 될일? : 토큰단위로 입력데이터를 잘라서 사용하니 편함..
+
+===========to do ========================
+
+printf 일때 %d(int) ? %s(문자열) ? 공부하기
+
+==============to do===pms-02-b app.3=============
+
+Integer.valueOf : 스트링을 int로 변환?
+
+Date deadline = Date.valueOf(scan.nextLine());
+int no = Integer.parseInt(keyboardScan.nextLine());   해결

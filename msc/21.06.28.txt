@@ -1,0 +1,83 @@
+ - Application s/w
+
+ web Application
+
+=======================================================
+
+ Back-end 개발
+- 출력할 데이터를 가공
+- 입력한 데이터를 저장/조회/변경/삭제
+- 사용자 인증(Authentio~ ) : 로그인
+- 사용자 권한
+
+java app -> DBMS(maria DB)
+      (작업요청)SQL(JDBC API + Mybatis Framework)
+          <-
+      (결과응답)
+
+Spring Framework(IoC, webMVC)
+             +
+      servlet/JSP
+
+=======================================================
+
+ Front end 개발
+- UI
+
+HTML + CSS(Bootstrap 라이브러리) + J/S(jQuery 라이브러리) // SI/SM
+
+=======================================================
+
+Webex 설치
+
+https://meet96.webex.com/meet/eomjinyoung-20210621
+
+========================================================
+
+GUI vs CLI(Command Line Interface)  예)콘솔, 명령프롬프트
+
+========================================================
+
+https://git-scm.com/download/win // 설치
+
+========================================================
+
+cd .. 상위 폴더
+
+================================================
+
+C:\Users\bitcamp>cd .. //뒤로가기
+
+C:\Users>cd bitcamp
+
+C:\Users\bitcamp>mkdir git // 폴더 생성
+
+C:\Users\bitcamp>cd git //들어가기
+
+===================== 가져오기 ===========================
+
+C:\Users\bitcamp\git>git clone https://github.com/eomjinyoung/bitcamp-20210621.git            (클론 - 컴퓨터 마다) - 강사꺼
+
+C:\Users\bitcamp\git\bitcamp-20210621>git pull (가져오기)    ---- 가져오기는 이것만 하면 된다
+
+=========================================================
+
+bitcamp(사용자 홈 폴더) & git 즐겨찾기 하기
+
+========================내꺼 변경 반영하기=================================
+
+C:\Users\bitcamp\git>git clone https://github.com/gooddaymsc/bitcamp-study.git                (클론 - 컴퓨터 마다) - 내꺼 - 클론은 한번만 하면 됌
+
+C:\Users\bitcamp\git\bitcamp-study>git config --global user.email "gooddaymsc@naver.com"       //한번만 하면됌(잔디심는 것)
+
+C:\Users\bitcamp\git\bitcamp-study>git add .  // . 모든 변경된 파일 명단작성
+
+C:\Users\bitcamp\git\bitcamp-study>git commit -m "ok"   // local 저장소에 백업한다.(반드시 백업 로컬에 백업하고 다시 서버에 올린다)
+                                                                -m : 메세지
+
+
+C:\Users\bitcamp\git\bitcamp-study>git push // 로컬 저장소에 백업한걸 마지막으로 한방에 서버에 업로드
+Username for 'https://github.com': gooddaymsc
+Password for 'https://gooddaymsc@github.com': (토큰값)
+
+% 클론하고  파일 변경하고 명단작성하고 로컬저장소에 백업하고 서버에 푸쉬한다. (집컴 노트북 등등)

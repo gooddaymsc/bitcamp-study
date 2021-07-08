@@ -1,0 +1,80 @@
+9일차[pms-02-b]
+
+★===========================================
+단축키
+1. main 타이핑 후 ctrl+spacebar = public static void main(String[] args){} 자동생성
+
+2. 실행가능 메소드 열어보기 : ctrl + spacebar
+
+3. 드래그 후 alt + 숫자키 올리기
+★★==============to do Date클래스==시간관련 블로그 정리할 것===========
+
+long millis = System.currentTimeMiillis();
+
+1. new java.sql.Date(millis);
+System.out.println(d.toString());
+---->
+3. new java.util.Date( );
+System.out.printf("%tY-%tm-%td\n",d ,d ,d); //년 월 일
+
+new java.sql.Date(millis);
+->
+2. java.sql.Date.valueOf(yyyy-mm-dd)
+
+-----------클래스-------------------------------------
+java.sql.Date
+
+java.lang.Integer
+=> Integer.parseInt(  )  :  int데이터로 변환하여 리턴
+String을 int로 변환
+
+
+
+[pms-02-b]
+
+★===to do   ===가비지 컬렉터 공부 ==================
+
+------------------------ App ----------------------------------------------
+
+배열...
+
+index = i 를 변수로 쓴다.
+
+refactor -> rename (글자 변경)
+
+------------------------------------------------------------
+
+i = i + 1
+연산자, 피연산자 구분
+
+★--------------------------------------------------------
+
+fianl / 상수(변하지 않는 수)는 대문자로 표시
+
+---------------------------------------------------------
+
+if (input.equals("N")) {
+        break;
+      }
+
+.equals(   ) : 대소문자구분 비교 // .equalsIgnoreCase : 대소문자 구분안하고 비교
+
+---------------------------------------
+
+|| or~~~~
+
+-------------날짜-----------------
+
+%tY-%1$tm-%1$td\n / 2021-07-08
+
+      System.out.printf("가입일: %tY-%1$tm-%1$td\n", registerdDate[i]);
+
+1$ 붙히는 이유?
+
+
+
+
+
+
+
+

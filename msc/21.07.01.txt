@@ -1,0 +1,112 @@
+4일차
+
+- 프로젝트 생성 = 프로젝트 폴더 생성(산출물 보관)
+
+==To do======gradle 설치======================================
+
+To do 1. https://gradle.org/install/ 바이너리온리 설치(개발 도구)
+            C:\tools\gradle-7.1\bin 사용(압축풀기)
+            시스템속성 고급 환경변수 편집 PATH : C:\tools\gradle-7.1\bin
+            cmd : gradle -v (확인)  ------- 이것부터 해보자
+
+-------------------------------------------------------------------------------------------
+            
+C:\Users\bitcamp\git\bitcamp-study\study-project>gradle init
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+1. Select type of project to generate:  // 프로젝트 유형
+  1: basic
+  2: application
+  3: library
+  4: Gradle plugin
+Enter selection (default: basic) [1..4] 2
+
+2. Select implementation language: // 언어
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Scala
+  6: Swift
+Enter selection (default: Java) [1..6] 3
+
+3. Split functionality across multiple subprojects?: //프로젝트 개수
+  1: no - only one application project
+  2: yes - application and library projects
+Enter selection (default: no - only one application project) [1..2] 1
+
+4. Select build script DSL: //빌드스크립트 언어
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Groovy) [1..2] 1
+
+5. Select test framework: //단위테스트
+  1: JUnit 4
+  2: TestNG
+  3: Spock
+  4: JUnit Jupiter
+Enter selection (default: JUnit Jupiter) [1..4] 1
+
+6. Project name (default: study-project): //프로젝트명
+7. Source package (default: study.project): com.eomcs.pms //자바기본패키지
+
+> Task :init
+Get more help with your project: https://docs.gradle.org/7.1/samples/sample_building_java_applications.html
+
+BUILD SUCCESSFUL in 11m 51s
+2 actionable tasks: 2 executed
+C:\Users\bitcamp\git\bitcamp-study\study-project>
+
+=============================================Todo END=====
+
+빌드 : 애플리케이션을 만들기 위해 수행하는 작업을 도와준다.
+작업 : 컴파일, 테스트, 배포파일 생성, 문서생성 등
+빌드도구 : 애플리케이션 생성과정을 통제하는 도구
+
+% Bulid  도구의 종류
+1세대 : Ant(build.xml)
+2세대 : Maven(pom.xml)
+3세대 : Gradle(build.gradle)
+
+- Gradle(3세대) : 안드로이드 앱을 개발할때 사용하는 기본 빌드 도구 + Maven 호완(2세대)
+
+=============gradle 로 실행(gradle 있는 사람)==========================================
+
+C:\Users\bitcamp\git\bitcamp-study\study-project>gradle -q run
+Hello World!
+
+=============gradle 로 실행(gradle 없는 사람)==========================================
+
+C:\Users\bitcamp\git\bitcamp-study\study-project>gradlew -q run
+Hello World!
+
+% gradlew.bat가 그 역할을 함.
+
+==============================================================================
+
+gradle +
+wrapper
+tasks
+tasks --all   // gradle 기능 보기
+projects
+processResources
+processTestResources
+clean
+classes
+testClasses
+check
+javadoc
+build
+
+=====강사 강의 설명 보기==============================================================
+C:\Users\bitcamp\git\bitcamp-study\study-project\app>gradle compileJava    =    bulid폴더 생성
+C:\Users\bitcamp\git\bitcamp-study\study-project\app>gradle compileTestJava
+-> Test compile 못함(아래꺼 필요)
+C:\Users\bitcamp\git\bitcamp-study\study-project\app>javac -d bin/main -cp c:\tools\junit-4.13.2.jar -sourcepath src/main/java src/test/java/com/eomcs/pms/AppTest.java
+-> sourcepath의 정의(https://micropilot.tistory.com/1175)
+============해결 방법====================================================
+build.gradle 에 플러그인 하면 됌~~~
+이것이 있는곳이 곧 프로젝트 명이 됨(보통은 그렇다)
+
+----------------------------------------------------------------------------

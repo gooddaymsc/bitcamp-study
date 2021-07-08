@@ -17,3 +17,12 @@
 
 ## 6일차
 - mini-pms-02-a 예제, V/S Live share 설치 및 실행, 리터럴, 값과 메모리
+
+## 7일차
+- 부동소수점 2진수 변환 / 문자열, 유니코드
+
+## 8일차
+- nextLine, nextInt 토큰 / Scanner
+
+## 9일차
+- Date클래스 / pms-02-c

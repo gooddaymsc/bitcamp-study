@@ -1,0 +1,92 @@
+
+Java 프로그래밍
+
+(하이브리드 형)컴파일러 + 인터프리터
+
+자바 컴파일러 + JVM 인터프리터
+
+"Write Once, Run Anywhere"
+
+===============================
+GraalVM 설치(version 11)
+
+C:\tools\graalvm-ce-java11-21.1.0
+
+위의 경로로..
+
+환경변수(경로) 확인
+echo %JAVA_HOME%
+echo %PATH%
+
+버전 확인
+java --version
+javac --version
+
+==============================
+
+자바 컴파일러 방법
+javac 소스파일명
+예) javac Hello.java
+예) javac -encoding utf-8 Hello.java (한글 있을때) - .class 생성
+
+JVM을 통하여 java.class 실행(바이트코드 인터프리터)
+실행 : java Hello
+
+- 1. 컴파일 방식 -
+hello.c - hello.exe - hello
+gcc 소스파일명(gcc hello.c)
+gcc -o 실행파일명 소스파일명(gcc -o hello hello.c)
+
+- 2. 인터프리터 방식 -
+hello.js - node hello.js
+
+- 3. 하이브리드 방식 -
+Hello.java - Hello.class - java Hello
+               javac Hello.java
+               javac -encoding utf-8 Hello.java
+
+================================
+
+encoding : 
+
+dicoding : 
+
+=============컴파일 하기==============
+
+javac -d bin src/Hello.java
+[-d bin : 컴파일 한 후 생성되는 .class 파일 둘 위치]
+
+javac -d bin/main -encoding utf-8 src/main/java/Hello.java
+       ------------   ---------------  -------------------------
+    .class 파일위치    utf-8 인코딩알림     경로+파일명
+
+
+
+=============실행 하기==============
+java -cp bin Hello
+[-classpath bin : .class 파일이 들어있는 폼의 위치]
+   = -cp
+
+====================================
+
+java-basic
+   src                    bin
+    -main                 -main
+       java
+       resource
+
+     -test       
+       java
+       resource
+
+=========================================
+
+gitignore
+- 백업에서 제외 할 대상을 지정
+bin/
+*.class
+*.exe
+
+질문 : C:\Users\bitcamp\git\bitcamp-study\java-basic>java -cp bin/main com/eomcs/lang/Hello3
+Hello, World!
+
