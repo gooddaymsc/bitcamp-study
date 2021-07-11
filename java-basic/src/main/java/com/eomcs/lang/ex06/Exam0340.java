@@ -16,8 +16,8 @@ public class Exam0340 {
     // 여러 개의 문장을 반복할 때는 블록으로 묶어라!
     i = 0;
     do {
-      i += 1;
-      System.out.println(i);
+//      i += 1;
+      System.out.println(++i);
     } while (i < 10);
   }
 }
