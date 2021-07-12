@@ -10,22 +10,24 @@ public class App2 {
 
     Scanner keyboardScan = new Scanner(System.in);
 
-    final int MAX_LENGTH = 100;
-
-    int[] no = new int[MAX_LENGTH];
-    String[] title = new String[MAX_LENGTH];
-    String[] content = new String[MAX_LENGTH];
-    Date[] startDate = new Date[MAX_LENGTH];
-    Date[] endDate = new Date[MAX_LENGTH];
-    String[] owner = new String[MAX_LENGTH];
-    String[] members = new String[MAX_LENGTH];
+    // 최대 100개의 프로젝트 정보를 저장할 메모리 준비
+    // => 배열의 크기를 미리 변수에 저장하여 사용한다.
+    // => 나중에 배열의 크기를 바꾸기 쉽다.
+    final int LENGTH = 100;
+    
+    int[] no = new int[LENGTH];
+    String[] title = new String[LENGTH];
+    String[] content = new String[LENGTH];
+    Date[] startDate = new Date[LENGTH];
+    Date[] endDate = new Date[LENGTH];
+    String[] owner = new String[LENGTH];
+    String[] members = new String[LENGTH];
 
     int size = 0;
-
-    for (int i = 0; i < MAX_LENGTH; i++) {
+    
+    for (int i = 0; i < LENGTH; i++) {
       System.out.print("번호? ");
-      no[i] = Integer.valueOf(keyboardScan.nextInt());
-      keyboardScan.nextLine(); // 번호 뒤에 남아 있는 줄바꿈 코드를 제거한다.
+      no[i] = Integer.valueOf(keyboardScan.nextLine());
 
       System.out.print("프로젝트명? ");
       title[i] = keyboardScan.nextLine();
@@ -46,23 +48,25 @@ public class App2 {
       members[i] = keyboardScan.nextLine();
 
       size++;
-      System.out.println();
+      System.out.println(); // 빈 줄 출력
 
-      System.out.print("계속 입력하시겠습니까?(y/N)");
-      String input = keyboardScan.nextLine();
-      if (!input.equalsIgnoreCase("y")) {
+      System.out.print("계속 입력하시겠습니까?(y/N) ");
+      String str = keyboardScan.nextLine();
+      if (!str.equalsIgnoreCase("y")) {
         break;
       }
-      System.out.println();
+      System.out.println(); // 빈 줄 출력
     }
 
     keyboardScan.close();
 
     System.out.println("--------------------------------");
 
+
     for (int i = 0; i < size; i++) {
-      System.out.printf("%d, %s, %s, %s, %s\n", 
-          no[i], title[i], startDate[i], endDate[i], members[i]);
+      // 번호, 프로젝트명, 시작일, 종료일, 만든이
+      System.out.printf("%d, %s, %s, %s, %s\n", // 출력 형식 지정
+          no[i], title[i], startDate[i], endDate[i], owner[i]);
     }
   }
 }
