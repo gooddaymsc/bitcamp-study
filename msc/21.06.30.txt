@@ -60,12 +60,10 @@ javac -d bin/main -encoding utf-8 src/main/java/Hello.java
        ------------   ---------------  -------------------------
     .class 파일위치    utf-8 인코딩알림     경로+파일명
 
+컴파일 : javac -encoding utf-8 -d bin/main src/main/java/com/eomcs/lang/Hello3.java
+실행 : java -cp bin/main com.eomcs.lang.Hello3
 
 
-=============실행 하기==============
-java -cp bin Hello
-[-classpath bin : .class 파일이 들어있는 폼의 위치]
-   = -cp
 
 ====================================
 
