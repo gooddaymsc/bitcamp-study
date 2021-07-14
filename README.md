@@ -34,3 +34,9 @@
 
 ## 11일차
 - 조건문, 반복문, 프로젝트pms-03-a(app1)
+
+## 12일차
+- 메소드 사용법, 파라미터/아규먼트, Java studio code Live share
+
+## 13일차
+- 메서드 정의, 가변/배열 파라미터, 메소드 호출과 메모리, call by value/reference
