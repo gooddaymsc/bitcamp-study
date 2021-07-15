@@ -8,7 +8,7 @@ public class Exam0330 {
   // primitive data type 값을 직접 넘기지 말고 
   // 객체에 담아 넘겨라!
   static class MyObject {
-    int a;
+    int a; // MyObject의 인스턴스... heap에 연속메모리로 생성!
     int b;
   }
 
