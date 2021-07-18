@@ -35,7 +35,7 @@ true if sequence represents a geometric progression,
 public class Test006 {
   static boolean isGeometricProgression(int[] sequence) {
 
-    for (int i = 1; i < sequence.length; i++) {
+    for (int i = 2; i < sequence.length; i++) {
       if (sequence[i] * sequence[0] == sequence[i - 1] * sequence[1]) {
         return false;
       }
