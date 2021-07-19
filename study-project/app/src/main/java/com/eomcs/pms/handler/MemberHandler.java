@@ -30,12 +30,21 @@ public class MemberHandler {
   public static void list() {
     System.out.println("[회원 목록]");
     for (int i = 0; i < size; i++) {
-      System.out.printf("%d, %s, %s, %s, %s\n",
-          members[i].no,
-          members[i].name,
-          members[i].email,
-          members[i].tel,
+      System.out.printf("%d, %s, %s, %s, %s\n", 
+          members[i].no, 
+          members[i].name, 
+          members[i].email, 
+          members[i].tel, 
           members[i].registeredDate);
     }
+  }
+
+  public static boolean exist(String name) {
+    for (int i = 0; i < size; i++ ) {
+      if(members[i].name.equals(name)) {
+        return true;
+      }
+    }
+    return false;
   }
 }

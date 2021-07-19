@@ -1,0 +1,11 @@
+15일차
+
+===========================================
+1. ﻿dependency(의존객체)
+
+ - client / supplier
+    App      MemberHandler
+
+2. Information Expert 설계 패턴(GRASP) 
+
+04-c -> 04-d / 05-a / 05-b
