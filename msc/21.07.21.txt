@@ -1,0 +1,7 @@
+16일차
+
+===========================================
+1.     String label = String.format("제목(%s)? ", board.title);
+    String title = Prompt.inputString(label);
+
+String title = Prompt.inputString(String.format("제목(%s)? ", board.title));
