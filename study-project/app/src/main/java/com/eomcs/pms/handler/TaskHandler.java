@@ -90,7 +90,7 @@ public class TaskHandler {
   }
 
   public void update() {
-    System.out.println("[게시글 변경]");
+    System.out.println("[작업 변경]");
     int no = Prompt.inputInt("번호? ");
 
     Task task = null;
@@ -103,26 +103,30 @@ public class TaskHandler {
     }
 
     if (task == null) {
-      System.out.println("해당 번호의 게시글이 없습니다.");
+      System.out.println("해당 번호의 작업이 없습니다.");
       return;
     }
 
     String content = Prompt.inputString(String.format("내용(%s)? ", task.content));
     Date deadline = Prompt.inputDate(String.format("마감일(%s)? ", task.deadline));
-    //    int status = Prompt.inputInt(String.format(
-    //        "상태(%s)?\n0: 신규\n1: 진행중\n2: 완료\n> ", getStatusLabel(task.status)));
+    int status = Prompt.inputInt(String.format("상태(%s)?\n0: 신규\n1: 진행중\n2: 완료\n> ", task.status));
     String owner = Prompt.inputString(String.format("담당자(%s)?(취소: 빈 문자열) ", task.owner));
+    if (owner == null) {
+      System.out.println("작업 변경을 취소합니다.");
+      return;
+    }
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("n") || input.length() == 0) {
-      System.out.println("게시글 변경을 취소하였습니다.");
+      System.out.println("작업 변경을 취소하였습니다.");
       return;
     }
 
     task.content = content;
     task.deadline = deadline;
+    task.status = status;
     task.owner = owner;
-    System.out.println("게시글을 변경하였습니다.");
+    System.out.println("작업을 변경하였습니다.");
   }
 }
