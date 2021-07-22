@@ -45,8 +45,8 @@ public class BoardHandler {
     Board board = null;
 
     for (int i = 0; i < this.size; i++) {
-      if (boards[i].no == no) {
-        board = boards[i];
+      if (this.boards[i].no == no) {
+        board = this.boards[i];
         break;
       }
     }
@@ -70,8 +70,8 @@ public class BoardHandler {
     Board board = null;
 
     for (int i = 0; i < this.size; i++) {
-      if (boards[i].no == no) {
-        board = boards[i];
+      if (this.boards[i].no == no) {
+        board = this.boards[i];
         break;
       }
     }
@@ -100,23 +100,32 @@ public class BoardHandler {
     System.out.println("[게시글 삭제]");
     int no = Prompt.inputInt("번호? ");
 
+    int boardIndex = -1;
+
     for (int i = 0; i < this.size; i++) {
-      if (boards[i].no == no) {
-        String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-
-        if (input.equalsIgnoreCase("y")) {
-          this.boards[i] = null;
-          System.out.println("게시글을 삭제하였습니다.");
-
-        } else {
-          System.out.println("게시글 삭제를 취소하였습니다.");
-        }
-
-        return;
+      if (this.boards[i].no == no) {
+        boardIndex = i;
+        break;
       }
-
-      System.out.println("해당 번호의 게시글이 없습니다.");
-
     }
+
+    if (boardIndex == -1) {
+      System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
+    }
+
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)");
+    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+      System.out.println("게시글 삭제를 취소하였습니다.");
+      return;
+    }
+
+    for (int i = boardIndex + 1; i < this.size; i++) {
+      this.boards[i - 1] = this.boards[i];
+    }
+    this.boards[--this.size] = null;
+
+    System.out.println("게시글을 삭제 하였습니다.");
+
   }
 }
