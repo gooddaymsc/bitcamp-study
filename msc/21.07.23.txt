@@ -1,0 +1,17 @@
+20일차(금)
+
+=============반복연습==06-b 3단계!!!===================
+ProjectHandler 클래스에서 중복되는 코드 메서드를 추출하기.
+
+findByNo( )
+indexOf( )
+promptOwner( )
+
+getStatusLabel( )
+
+==========================================
+
+
+ProjectHandler
+TaskHandler
+2개 수정
