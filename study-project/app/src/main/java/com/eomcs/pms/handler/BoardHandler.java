@@ -60,7 +60,7 @@ public class BoardHandler {
     System.out.println("[게시글 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    Board board = findByNo(no);
+    Board board  = findByNo(no);
 
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
@@ -71,7 +71,7 @@ public class BoardHandler {
     String content = Prompt.inputString(String.format("내용(%s)? ", board.content));
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
-    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+    if (!input.equalsIgnoreCase("y")) {
       System.out.println("게시글 변경을 취소하였습니다.");
       return;
     }
@@ -93,12 +93,12 @@ public class BoardHandler {
     }
 
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
-    if (input.equalsIgnoreCase("n") || input.length() == 0) {
+    if (!input.equalsIgnoreCase("y")) {
       System.out.println("게시글 삭제를 취소하였습니다.");
       return;
     }
 
-    for (int i = boardIndex + 1; i < this.size; i++) {
+    for (int i = boardIndex +1; i < this.size; i++) {
       this.boards[i - 1] = this.boards[i];
     }
     this.boards[--this.size] = null;
@@ -108,6 +108,7 @@ public class BoardHandler {
 
   private Board findByNo(int no) {
     for (int i = 0; i < this.size; i++) {
+
       if (this.boards[i].no == no) {
         return this.boards[i];
       }

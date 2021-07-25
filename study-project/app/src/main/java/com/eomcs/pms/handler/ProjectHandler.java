@@ -81,13 +81,35 @@ public class ProjectHandler {
     Date startDate = Prompt.inputDate(String.format("시작일(%s)? ", project.startDate));
     Date endDate = Prompt.inputDate(String.format("종료일(%s)? ", project.endDate));
 
-    String owner = promptOwner(memberHandler, project.owner);
-    if (owner == null) {
-      System.out.println("프로젝트 변경을 취소합니다.");
-      return;
+    String owner = null;
+    while (true) {
+      owner = Prompt.inputString(String.format(
+          "만든이(%s)?(취소: 빈 문자열) ", project.owner));
+      if (memberHandler.exist(owner)) {
+        break;
+      } else if (owner.length() == 0) {
+        System.out.println("프로젝트 변경을 취소합니다.");
+        return;
+      }
+      System.out.println("등록된 회원이 아닙니다.");
     }
 
-    String members = promptMembers(memberHandler, project.members);
+    String members = "";
+    while (true) {
+      String member = Prompt.inputString(String.format(
+          "팀원(%s)?(완료: 빈 문자열) ", project.members));
+      if (memberHandler.exist(member)) {
+        if (members.length() > 0) {
+          members += ",";
+        }
+        members += member;
+        continue;
+      } else if (member.length() == 0) {
+        break;
+      } 
+      System.out.println("등록된 회원이 아닙니다.");
+    }
+
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (input.equalsIgnoreCase("n") || input.length() == 0) {
@@ -132,6 +154,7 @@ public class ProjectHandler {
 
   private Project findByNo(int no) {
     for (int i = 0; i < this.size; i++) {
+
       if (this.projects[i].no == no) {
         return this.projects[i];
       }
@@ -155,7 +178,8 @@ public class ProjectHandler {
   private String promptOwner(MemberHandler memberHandler, String ownerName) {
     while (true) {
       String owner = Prompt.inputString(String.format(
-          "만든이%s?(취소: 빈 문자열) ", ownerName != null ? "(" + ownerName + ")" : ""));
+          "만든이%s?(취소: 빈 문자열) ", 
+          ownerName != null ? "(" + ownerName + ")" : ""));
       if (memberHandler.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {
@@ -169,12 +193,12 @@ public class ProjectHandler {
     return promptMembers(memberHandler, null);
   }
 
-
   private String promptMembers(MemberHandler memberHandler, String oldMembers) {
     String members = "";
     while (true) {
       String member = Prompt.inputString(String.format(
-          "팀원%s?(완료: 빈 문자열) ", oldMembers != null ? "(" + oldMembers + ")" : ""));
+          "팀원%s?(완료: 빈 문자열) ",
+          oldMembers != null ? "(" + oldMembers + ")" : ""));
       if (memberHandler.exist(member)) {
         if (members.length() > 0) {
           members += ",";

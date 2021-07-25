@@ -9,7 +9,6 @@ import com.eomcs.util.Prompt;
 public class App {
 
   public static void main(String[] args) {
-
     BoardHandler boardHandler = new BoardHandler();
     MemberHandler memberHandler = new MemberHandler();
     ProjectHandler projectHandler = new ProjectHandler();
@@ -27,13 +26,13 @@ public class App {
       } else if (input.equals("/member/list")) {
         memberHandler.list();
 
-      } else if (input.equals("/member/detail")) {
+      }  else if (input.equals("/member/detail")) {
         memberHandler.detail();
 
-      } else if (input.equals("/member/update")) {
+      }  else if (input.equals("/member/update")) {
         memberHandler.update();
 
-      } else if (input.equals("/member/delete")) {
+      }  else if (input.equals("/member/delete")) {
         memberHandler.delete();
 
       }  else if (input.equals("/project/add")) {
@@ -87,7 +86,6 @@ public class App {
       System.out.println();
     }
 
-    // Prompt 가 소유하고 관리하고 있는 자원을 닫으라고 명령한다. 
     Prompt.close();
   }
 }

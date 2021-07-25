@@ -37,7 +37,7 @@ public class TaskHandler {
           this.tasks[i].no, 
           this.tasks[i].content, 
           this.tasks[i].deadline, 
-          getStatusLabel(this.tasks[i].status), 
+          getStatusLabel(this.tasks[i].status),
           this.tasks[i].owner);
     }
   }
@@ -47,6 +47,7 @@ public class TaskHandler {
     int no = Prompt.inputInt("번호? ");
 
     Task task = findByNo(no);
+
     if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
@@ -63,6 +64,7 @@ public class TaskHandler {
     int no = Prompt.inputInt("번호? ");
 
     Task task = findByNo(no);
+
     if (task == null) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
@@ -70,11 +72,17 @@ public class TaskHandler {
 
     String content = Prompt.inputString(String.format("내용(%s)? ", task.content));
     Date deadline = Prompt.inputDate(String.format("마감일(%s)? ", task.deadline));
-    int status = promptStatus(task.status);
+
+    System.out.printf("상태(%s)?\n", getStatusLabel(task.status));
+    System.out.println("0: 신규");
+    System.out.println("1: 진행중");
+    System.out.println("2: 완료");
+    int status = Prompt.inputInt("> ");
+
     String owner = promptOwner(memberHandler, String.format(
         "담당자(%s)?(취소: 빈 문자열) ", task.owner));
     if (owner == null) {
-      System.out.println("작업 등록을 취소합니다.");
+      System.out.println("작업 변경을 취소합니다.");
       return;
     }
 
@@ -97,6 +105,7 @@ public class TaskHandler {
     int no = Prompt.inputInt("번호? ");
 
     int index = indexOf(no);
+
     if (index == -1) {
       System.out.println("해당 번호의 작업이 없습니다.");
       return;
@@ -118,6 +127,7 @@ public class TaskHandler {
 
   private Task findByNo(int no) {
     for (int i = 0; i < this.size; i++) {
+
       if (this.tasks[i].no == no) {
         return this.tasks[i];
       }
@@ -134,14 +144,6 @@ public class TaskHandler {
     return -1;
   }
 
-  private String getStatusLabel(int status) {
-    switch (status) {
-      case 1: return "진행중";
-      case 2: return "완료";
-      default: return "신규";
-    }
-  }
-
   private String promptOwner(MemberHandler memberHandler, String label) {
     while (true) {
       String owner = Prompt.inputString(label);
@@ -154,13 +156,21 @@ public class TaskHandler {
     }
   }
 
+  private String getStatusLabel(int status) {
+    switch (status) {
+      case 1: return "진행중";
+      case 2: return "완료";
+      default: return "신규";
+    }
+  }
+
   private int promptStatus() {
     return promptStatus(-1);
   }
 
   private int promptStatus(int status) {
     if (status == -1) {
-      System.out.println("상태? ");
+      System.out.println("상태?");
     } else {
       System.out.printf("상태(%s)?\n", getStatusLabel(status));
     }
