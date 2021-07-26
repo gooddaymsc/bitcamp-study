@@ -9,10 +9,13 @@ import com.eomcs.util.Prompt;
 public class App {
 
   public static void main(String[] args) {
+
     BoardHandler boardHandler = new BoardHandler();
     MemberHandler memberHandler = new MemberHandler();
-    ProjectHandler projectHandler = new ProjectHandler();
-    TaskHandler taskHandler = new TaskHandler();
+
+    ProjectHandler projectHandler = new ProjectHandler(memberHandler);
+
+    TaskHandler taskHandler = new TaskHandler(memberHandler);
 
     while (true) {
       String input = Prompt.inputString("명령> ");
@@ -26,17 +29,17 @@ public class App {
       } else if (input.equals("/member/list")) {
         memberHandler.list();
 
-      }  else if (input.equals("/member/detail")) {
+      } else if (input.equals("/member/detail")) {
         memberHandler.detail();
 
-      }  else if (input.equals("/member/update")) {
+      } else if (input.equals("/member/update")) {
         memberHandler.update();
 
-      }  else if (input.equals("/member/delete")) {
+      } else if (input.equals("/member/delete")) {
         memberHandler.delete();
 
       }  else if (input.equals("/project/add")) {
-        projectHandler.add(memberHandler);
+        projectHandler.add();
 
       }  else if (input.equals("/project/list")) {
         projectHandler.list();
@@ -45,13 +48,13 @@ public class App {
         projectHandler.detail();
 
       }  else if (input.equals("/project/update")) {
-        projectHandler.update(memberHandler);
+        projectHandler.update();
 
       }  else if (input.equals("/project/delete")) {
         projectHandler.delete();
 
       }  else if (input.equals("/task/add")) {
-        taskHandler.add(memberHandler);
+        taskHandler.add();
 
       }  else if (input.equals("/task/list")) {
         taskHandler.list();
@@ -60,7 +63,7 @@ public class App {
         taskHandler.detail();
 
       }  else if (input.equals("/task/update")) {
-        taskHandler.update(memberHandler);
+        taskHandler.update();
 
       }  else if (input.equals("/task/delete")) {
         taskHandler.delete();
