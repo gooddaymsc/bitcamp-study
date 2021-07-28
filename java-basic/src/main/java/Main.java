@@ -5,20 +5,13 @@ public class Main {
   public static void main(String[] args) {
 
     Scanner scan = new Scanner(System.in);
-    int t = scan.nextInt();
-    int[] arr = new int[t];
 
-    for (int i = 0; i < t; i++) {
-      int a = scan.nextInt();
-      int b = scan.nextInt();
+    int n = scan.nextInt();
+    int result = 0;
 
-      arr[i] = a + b;
+    for (int i = 1; i <= n; i++) {
+      result += i;
     }
-
-    for (int k : arr) {
-      System.out.println(k);
-    }
-
-    scan.close();
+    System.out.println(result);
   }
 }
