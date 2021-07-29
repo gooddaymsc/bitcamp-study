@@ -1,7 +1,7 @@
 // 다형성 - 다형적 변수와 instanceof 연산자
 package com.eomcs.oop.ex06.a;
 
-public class Exam0511 extends Object {
+public class Exam0511 {
 
   public static void main(String[] args) {
     Vehicle v = new Sedan();
