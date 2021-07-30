@@ -3,37 +3,41 @@ package com.eomcs.oop.ex06.c;
 
 public class Exam0610 {
 
-  static class Car {}
-  static class Sedan extends Car {}
-  static class Tico extends Sedan {}
+  static class A {}
+  static class B extends A {}
+  static class C extends B {}
 
-  static class CarFactory {
-    Car create() {
-      return new Car();
+  static class AFactory {
+    A create() {
+      return new A();
     }
   }
 
-  static class SedanFactory extends CarFactory {
+  static class BFactory extends AFactory {
     // 오버라이딩 메서드의 리턴 타입은 
     // 서브 클래스도 가능하다.
     @Override
-    Sedan create() {
-      return new Sedan();
+    B create() {
+      return new B();
     }
   }
 
-  static class TicoFactory extends SedanFactory {
+  static class CFactory extends BFactory {
     // 오버라이딩 메서드의 리턴 타입은 
     // 서브 클래스도 가능하다.
     @Override
-    Tico create() {
-      return new Tico();
+    C create() {
+      return new C();
     }
   }
 
 
   public static void main(String[] args) {
-
+    new CarFactory().makeCar().run();
+    new SedanFactory().makeCar().run();
+    new TruckFactory().makeCar().run();
+    new DumpTruckFactory().makeCar().run();
+    new DumpTruckFactory2().makeCar().run();
   }
 }
 

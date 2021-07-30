@@ -32,8 +32,6 @@ public class Exam0210 {
     Sedan s = (Sedan)c;
     s.sunroof = true;
     s.auto = true;
-
-    System.out.println("종료!");
   }
 
 }

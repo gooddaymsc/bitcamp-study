@@ -10,9 +10,12 @@ public class Exam0110 {
 
     void print() {
       System.out.println("A.print():");
-      System.out.printf("  => this.name(%s)\n", this.name);
-      System.out.printf("  => this.tel(%s)\n", this.tel);
-      System.out.printf("  => this.working(%s)\n", this.working);
+      System.out.printf("  => this.name(%s)\n",
+          this.name);
+      System.out.printf("  => this.tel(%s)\n",
+          this.tel);
+      System.out.printf("  => this.working(%s)\n",
+          this.working);
     }
   }
 
@@ -21,10 +24,14 @@ public class Exam0110 {
 
     void print2() {
       System.out.println("A2.print2():");
-      System.out.printf("  => this.name(%s)\n", this.name);
-      System.out.printf("  => this.tel(%s)\n", this.tel);
-      System.out.printf("  => this.working(%s)\n", this.working);
-      System.out.printf("  => this.age(%s)\n", this.age);
+      System.out.printf("  => this.name(%s)\n",
+          this.name);
+      System.out.printf("  => this.tel(%s)\n",
+          this.tel);
+      System.out.printf("  => this.working(%s)\n",
+          this.working);
+      System.out.printf("  => this.age(%s)\n",
+          this.age);
     }
   }
 
