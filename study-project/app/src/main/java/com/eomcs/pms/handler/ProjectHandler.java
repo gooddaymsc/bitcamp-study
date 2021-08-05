@@ -6,28 +6,12 @@ import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
 
-  static final int MAX_LENGTH = 5;
+  ProjectList2 projectList = new ProjectList2();
+  MemberList2 memberList;
 
-  Project[] projects = new Project[MAX_LENGTH];
-  int size = 0;
-
-  MemberHandler memberHandler;
-
-  public ProjectHandler(MemberHandler memberHandler) {
-    this.memberHandler = memberHandler;
+  public ProjectHandler(MemberList2 memberList) {
+    this.memberList = memberList;
   }
-
-  static class Node {
-    Project project;
-    Node next;
-
-    public Node (Project project) {
-      this.project = project;
-    }
-  }
-
-  Node head;
-  Node tail;
 
   public void add() {
     System.out.println("[프로젝트 등록]");
@@ -48,44 +32,31 @@ public class ProjectHandler {
 
     project.members = promptMembers("팀원?(완료: 빈 문자열) ");
 
-    Node node = new Node(project);
+    projectList.add(project);
 
-    if (head == null) {
-      tail = head = node;
-    } else {
-      tail.next = node;
-      tail = node;
-    }
-
-    size++;
   }
 
   public void list() {
     System.out.println("[프로젝트 목록]");
 
-    if (head == null) {
-      return;
-    }
-
-    Node node = head;
-
-    do {
+    Object[] list = projectList.toArray();
+    for (Object obj : list) {
+      Project project = (Project) obj;
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
-          node.project.no, 
-          node.project.title, 
-          node.project.startDate, 
-          node.project.endDate, 
-          node.project.owner,
-          node.project.members);
-      node = node.next;
-    } while (node != null);
+          project.no, 
+          project.title, 
+          project.startDate, 
+          project.endDate, 
+          project.owner,
+          project.members);
+    }
   }
 
   public void detail() {
     System.out.println("[프로젝트 상세보기]");
     int no = Prompt.inputInt("번호? ");
 
-    Project project = findByNo(no);
+    Project project = projectList.findByNo(no);
 
     if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
@@ -104,7 +75,7 @@ public class ProjectHandler {
     System.out.println("[프로젝트 변경]");
     int no = Prompt.inputInt("번호? ");
 
-    Project project = findByNo(no);
+    Project project = projectList.findByNo(no);
 
     if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
@@ -146,7 +117,7 @@ public class ProjectHandler {
     System.out.println("[프로젝트 삭제]");
     int no = Prompt.inputInt("번호? ");
 
-    Project project = findByNo(no);
+    Project project = projectList.findByNo(no);
 
     if (project == null) {
       System.out.println("해당 번호의 프로젝트가 없습니다.");
@@ -159,50 +130,15 @@ public class ProjectHandler {
       return;
     }
 
-    Node node = head;
-    Node prev = null;
-
-    while (node != null) {
-      if (node.project == project) {
-        if (node == head) {
-          head = node.next;
-        } else {
-          prev.next = node.next;          
-        }
-        node.next = null;
-
-        if (node == tail) {
-          tail = prev;
-        }
-        break;
-      }
-      prev = node;
-      node = node.next;
-    }
-
-    size--;
+    projectList.remove(project);
 
     System.out.println("프로젝트를 삭제하였습니다.");
-  }
-
-  private Project findByNo(int no) {
-
-
-    Node node = head;
-
-    while (node != null) {
-      if (node.project.no == no) {
-        return node.project;
-      }
-      node = node.next;
-    }
-    return null;
   }
 
   private String promptOwner(String label) {
     while (true) {
       String owner = Prompt.inputString(label);
-      if (this.memberHandler.exist(owner)) {
+      if (this.memberList.exist(owner)) {
         return owner;
       } else if (owner.length() == 0) {
         return null;
@@ -215,7 +151,7 @@ public class ProjectHandler {
     String members = "";
     while (true) {
       String member = Prompt.inputString(label);
-      if (this.memberHandler.exist(member)) {
+      if (this.memberList.exist(member)) {
         if (members.length() > 0) {
           members += ",";
         }
@@ -230,4 +166,8 @@ public class ProjectHandler {
   }
 
 }
+
+
+
+
 
