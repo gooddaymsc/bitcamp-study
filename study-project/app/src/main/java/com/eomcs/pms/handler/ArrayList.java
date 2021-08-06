@@ -1,9 +1,8 @@
 package com.eomcs.pms.handler;
 
-public class ArrayList {
+public class ArrayList implements List {
 
   static final int MAX_LENGTH = 5;
-
   Object[] list = new Object[MAX_LENGTH];
   int size = 0;
 
@@ -13,25 +12,25 @@ public class ArrayList {
       for (int i = 0; i < size; i++) {
         arr[i] = list[i];
       }
-      list = arr;
+      list = arr; // boards에 저장된 옛날 배열 주소를 버리고 새 배열 주소를 저장한다.
     }
     this.list[this.size++] = obj;
   }
 
   public Object[] toArray() {
-    Object[] arr = new Object[size];
-    for (int i = 0; i < size; i++) {
+    Object[] arr = new Object[this.size]; // 배열에 저장된 값을 담을 정도의 크기를 가진 새 배열을 만든다.
+    for (int i = 0; i < this.size; i++) { // 배열에 저장된 값을 새 배열에 복사한다.
       arr[i] = list[i];
     }
-    return arr;
+    return arr; // 새 배열을 리턴한다.
   }
 
   public boolean remove(Object obj) {
-
     int index = indexOf(obj);
     if (index == -1) {
       return false;
     }
+
     for (int i = index + 1; i < this.size; i++) {
       this.list[i - 1] = this.list[i];
     }
@@ -48,4 +47,5 @@ public class ArrayList {
     }
     return -1;
   }
+
 }
