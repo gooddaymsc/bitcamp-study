@@ -11,10 +11,10 @@ public class Exam0121 {
 
     // 개발을 하다 보면 인스턴스의 현재 값을 간단히 확인하고 싶을 경우가 있다.
     // 그럴 경우 toString()을 오버라이딩 하라!
-    @Override
-    public String toString() {
-      return "My [name=" + name + ", age=" + age + "]";
-    }
+    //    @Override
+    //    public String toString() {
+    //      return "My [name=" + name + ", age=" + age + "]";
+    //    }
 
 
   }
