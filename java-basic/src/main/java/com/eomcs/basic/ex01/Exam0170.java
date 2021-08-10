@@ -25,11 +25,11 @@ public class Exam0170 {
       this.aver = this.sum / 3f;
     }
 
-    @Override
-    public String toString() {
-      return "Score [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + ", sum="
-          + sum + ", aver=" + aver + "]";
-    }
+//    @Override
+//    public String toString() {
+//      return "Score [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + ", sum="
+//          + sum + ", aver=" + aver + "]";
+//    }
   }
 
   public static void main(String[] args) {
