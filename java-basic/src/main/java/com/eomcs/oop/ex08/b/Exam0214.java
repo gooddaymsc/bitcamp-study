@@ -1,4 +1,4 @@
-// 캡슐화(encapsulation) - 서브 클래스의 맴버가 접근할 수 있는 범위 II
+// 캡슐화 접근 범위 테스트 - 서브 클래스의 멤버가 접근할 수 있는 범위 II
 package com.eomcs.oop.ex08.b;
 
 public class Exam0214 extends com.eomcs.oop.ex08.b.sub.Y {

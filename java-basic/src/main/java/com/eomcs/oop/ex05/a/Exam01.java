@@ -8,6 +8,6 @@ public class Exam01 {
     c1.model = "티코";
     c1.capacity = 5;
 
-    Car c2 = new Car( "소나타", "비트자동차", 5);
+    Car c2 = new Car("소나타", "비트자동차",  5);
   }
 }

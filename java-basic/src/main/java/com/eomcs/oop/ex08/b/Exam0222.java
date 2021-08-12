@@ -10,29 +10,26 @@ class Car2 {
 
 class CarFactory {
 
-
   // 생성자를 private으로 선언하면 외부에서 이 클래스의 인스턴스를 생성하는 것을 막을 수 있다.
   private CarFactory() {}
 
-
   // 예2) 인스턴스를 오직 한 개만 생성해야 할 경우
-  // -인스턴스를 여러 개 생성할 필요가 없는 경우에 생성자를 private으로 막는다.
-  // - getInstance() 같은 스태틱 메서드를 통해 인스턴스를 한 개만 만들어 사용한다.
-  // - 이런 설계 기법을 "singletone" 패턴이라 부른다.
+  // - 인스턴스를 여러 개 생성할 필요가 없는 경우에 생성자를 private으로 막는다.
+  // - getInstance() 같은  스태틱 메서드를 통해 인스턴스를 한 개만 만들어 사용한다.
+  // - 이런 설계 기법을 "singleton" 패턴이라 부른다.
   //
-
   static CarFactory factory = null;
   public static CarFactory getInstance() {
     if (factory == null) {
-      factory = new CarFactory(); // 객체 생성을 오로지 한개만!!!
+      factory  = new CarFactory();
     }
-    return factory; // factory에 있는 인스턴스 주소를..
+    return factory;
   }
 
+  // 다음은 CarFactory를 통해 자동차를 생성할 때 호출할 메서드이다.
+  public Car2 create(String name) {
 
-  public static Car2 create(String name) {
-
-    Car2 c = new Car2(); // private은 클래스 안에서 사용할 수 있다.
+    Car2 c = new Car2();
 
     switch (name) {
       case "티코":
@@ -61,9 +58,11 @@ public class Exam0222 {
 
   public static void main(String[] args) {
 
-    //    CarFactory factory = new CarFactory(); // 컴파일 오류! 왜? 생성자가 private이다.
+    // 자동차 공장 객체를 먼저 만든다.
+    //    CarFactory factory = new CarFactory(); // 컴파일 오류! 왜? 생성자가 private 이다.
 
-    CarFactory factory = CarFactory.getInstance();
+    // 생성자가 private 일 경우 보통 스태틱 메서드를 통해 인스턴스를 생성한다.
+    CarFactory factory = CarFactory.getInstance(); 
 
     Car2 c = factory.create("티코");
 
@@ -71,17 +70,18 @@ public class Exam0222 {
         c.model, c.maker, c.cc, c.valve);
 
     // Exam0221이나
-    //   예) Car c2 = Car.creat("티코");
+    //   예) Car c2 = Car.create("티코");
     //
     // Exam0222의 경우처럼,
-    // 예) CarFactory factory = Car.Factory.getInstatnce();
-    //
-    // 생성자가 private 접근으로 막혀 있어
+    //   예) CarFactory factory = CarFactory.getInstance();
+    // 
+    // 생성자가 private 접근으로 막혀 있어 
     // new 연산자를 이용하지 않고 스태틱 메서드를 호출해서 인스턴스를 생성하는 경우
     // 다음 둘 중 하나다!
-    //   1) 인스턴스 생성 과정이 복잡한 경우(Exam0221)
+    //   1) 인스턴스 생성 과정이 복잡한 경우(Exam0221) 
     //   2) 인스턴스를 한 개만 생성해야 하는 경우(Exam0222)
-    //
+    // 
+
 
   }
 }

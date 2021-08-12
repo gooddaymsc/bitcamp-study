@@ -8,19 +8,11 @@ public class Exam0730 {
     int b;
     int c;
 
-    {
-      a = 100;
-      System.out.println("Hello!");
-    }
-
-    // 여러 개의 생성자가 있으면,
-    // - 존재하는 모든 생성자의 앞 부분에 삽입된다.
-    // - 바이트코드(Exam0730$A.class)를 확인해 보라!
     A() {
       // 자바 컴파일러는 필드 초기화(variable initializer)나 
       // 인스턴스 초기화 블록(initializer block)이 있으면 
       // 선언된 순서대로 모든 생성자의 첫 부분에 복사한다.
-      // 즉 위에 선언된 초기화 블록에 안에 있는 코드가 그대로 다음과 같이 
+      // 즉 선언된 초기화 블록에 안에 있는 코드가 그대로 다음과 같이 
       // 복사된다.
       // Java Tutorial 문서: Learning the Java Language > Classes and Objects
       // 'The Java compiler copies initializer blocks 
@@ -56,6 +48,14 @@ public class Exam0730 {
       this.b = b;
       this.c = c;
     }
+
+    { // 인스턴스 초기화 블록 (initializer block)
+      a = 100;
+      System.out.println("Hello!");
+    }
+    // 여러 개의 생성자가 있으면,
+    // - 인스턴스 초기화 블록 코드는 존재하는 모든 생성자의 앞 부분에 삽입된다.
+    // - 바이트코드(Exam0730$A.class)를 확인해 보라!
   }
   public static void main(String[] args) {
     A obj1 = new A();
