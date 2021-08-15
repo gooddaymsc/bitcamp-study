@@ -20,5 +20,10 @@ public class Exam0110 {
       System.out.println("자동차를 점검하시기 바랍니다. 문제 발생!");
     }
 
+    //    c1.maker = "samsung";
+    c1.setMaker("kia");
+    System.out.println(c1);
+
+
   }
 }

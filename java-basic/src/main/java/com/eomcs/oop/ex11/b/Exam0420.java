@@ -5,7 +5,6 @@ import static com.eomcs.oop.ex11.b.E.m1;
 import static com.eomcs.oop.ex11.b.E.v1;
 import static com.eomcs.oop.ex11.b.sub.M.m2;
 import static com.eomcs.oop.ex11.b.sub.M.v2;
-
 // 중첩 클래스를 import 할 때는 static을 적지 않는다.
 import com.eomcs.oop.ex11.b.E.X;
 import com.eomcs.oop.ex11.b.sub.M.Y;

@@ -353,3 +353,27 @@
 ## 31일차(2021-08-09,월)
 - 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
 	- ex07: 추상 클래스와 추상 메서드
+
+## 32일차(2021-08-10,화)
+- 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
+	- ex01: Object 클래스 사용법(계속)
+	- ex02: String 클래스 사용법
+
+## 33일차(2021-08-11,수)
+- 자바 기본 클래스 사용법(eomcs-java/com.eomcs.basic)
+	- ex02: Wrapper, Date, Calendar 클래스 사용법
+- 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
+	- ex09(a1 ~ c): 인터페이스 문법
+
+## 34일차(2021-08-12,목)
+- 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
+	- ex09(d ~ h): 인터페이스와 추상 클래스의 협업, 인터페이스 활용
+
+## 35일차(2021-08-13,금)
+- 자바 객체지향 문법(eomcs-java/com.eomcs.oop)
+	- ex09(i ~ j): 인터페이스 활용
+	- ex11(a ~ c:Exam0240): 중첩 클래스 사용법
+	
+## 37일차(2021-08-18,수)
+- 팀 별 프로젝트
+	- 1차 주제 선정 발표
