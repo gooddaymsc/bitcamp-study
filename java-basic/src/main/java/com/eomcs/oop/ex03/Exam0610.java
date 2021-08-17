@@ -4,7 +4,7 @@ package com.eomcs.oop.ex03;
 public class Exam0610 {
 
   public static class A {
-    static int a;   //스테틱 맴버
+    static int a;
 
     static void m() {}
 
@@ -27,7 +27,7 @@ public class Exam0610 {
     // - 레퍼런스를 선언할 때는 클래스가 로딩되지 않는다.
     // - 그래서 스태틱 초기화 블록이 실행되지 않는다.
     A obj1;
-    A obj2;     //레퍼런스
+    A obj2;
 
     System.out.println("종료!");
   }
