@@ -9,13 +9,12 @@ public class Exam0110 {
     // public 으로 공개된 클래스는 다른 패키지에서 접근 할 수 있다.
     com.eomcs.oop.ex11.a.sub.A obj1 = new com.eomcs.oop.ex11.a.sub.A();
 
-    // public 으로 공개되지 않은 클래스는 다른 패키지에서 접근할 수 없다.
-    com.eomcs.oop.ex11.a.sub.B obj2 = new com.eomcs.oop.ex11.a.sub.B(); // 컴파일 오류!
+    // public 으로 공개되지 않은 클래스는 같은 패키지에서만 접근할 수 있다.
+    com.eomcs.oop.ex11.a.sub.B obj2 = new com.eomcs.oop.ex11.a.sub.B(); // OK!
 
     // 같은 패키지의 클래스를 사용할 때는 패키지명을 생략할 수 있다.
-    // import도 할 필요가 없다.
+    // import 도 할 필요가 없다.
     A obj3 = new A();
-
     B obj4 = new B();
 
   }

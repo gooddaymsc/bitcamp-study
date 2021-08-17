@@ -1,10 +1,13 @@
 package com.eomcs.oop.ex09.g;
 
 public abstract class AbstractCar implements Car, CarCheckInfo {
+  int gas;
+  int brakeOil;
+  int engineOil;
 
-  private String maker;
-  private String model;
-  private int cc;
+  String maker;
+  String model;
+  int cc;
 
   // 자동차 기본 기능
   public String getMaker() {
@@ -26,11 +29,6 @@ public abstract class AbstractCar implements Car, CarCheckInfo {
     this.cc = cc;
   }
 
-  @Override
-  public String toString() {
-    return String.format("이차의 이름은! %s 자동차!", this.maker);
-  }
-
   // Car 규칙에 따라 기능 구현
   @Override
   public void start() {
@@ -49,5 +47,16 @@ public abstract class AbstractCar implements Car, CarCheckInfo {
   //  public abstract void run();
 
   // CarCheckInfo 규칙에 따라 기능 구현하기
-
+  @Override
+  public int getGas() {
+    return gas;
+  }
+  @Override
+  public int getBrakeOil() {
+    return brakeOil;
+  }
+  @Override
+  public int getEngineOil() {
+    return engineOil;
+  }
 }

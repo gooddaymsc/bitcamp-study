@@ -1,14 +1,14 @@
 package msc;
-class SutdaCard {
+class SutdaCard1 {
 
   int a; //3
   boolean b; //false
 
-  SutdaCard () {
+  SutdaCard1 () {
     this.a = 1;
     this.b = true;
   }
-  SutdaCard (int a, boolean b) {
+  SutdaCard1 (int a, boolean b) {
     this.a = a;
     this.b = b;
   }
@@ -20,8 +20,8 @@ class SutdaCard {
 
 public class Exercise6_2 {
   public static void main(String args[]) {
-    SutdaCard card1 = new SutdaCard(3, false);
-    SutdaCard card2 = new SutdaCard();
+    SutdaCard1 card1 = new SutdaCard1(3, false);
+    SutdaCard1 card2 = new SutdaCard1();
     System.out.println(card1.info()); //3
     System.out.println(card2.info()); //1K
   }
