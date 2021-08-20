@@ -1,15 +1,16 @@
 package com.eomcs.pms.handler;
 
 import java.sql.Date;
+import java.util.List;
 import com.eomcs.pms.domain.Project;
 import com.eomcs.util.Prompt;
 
 public class ProjectHandler {
 
-  List projectList;
+  List<Project> projectList;
   MemberHandler memberHandler;
 
-  public ProjectHandler(List projectList, MemberHandler memberHandler) {
+  public ProjectHandler(List<Project> projectList, MemberHandler memberHandler) {
     this.projectList = projectList;
     this.memberHandler = memberHandler;
   }
@@ -40,10 +41,10 @@ public class ProjectHandler {
   public void list() {
     System.out.println("[프로젝트 목록]");
 
-    Object[] list = projectList.toArray();
+    Project[] projects = new Project[projectList.size()];
+    projectList.toArray(projects);
 
-    for (Object obj : list) {
-      Project project = (Project) obj;
+    for (Project project : projects) {
       System.out.printf("%d, %s, %s, %s, %s, [%s]\n",
           project.getNo(), 
           project.getTitle(), 
@@ -138,9 +139,8 @@ public class ProjectHandler {
   }
 
   public Project findByNo(int no) {
-    Object[] arr = projectList.toArray();
-    for (Object obj : arr) {
-      Project project = (Project) obj;
+    Project[] arr = projectList.toArray(new Project[0]);
+    for (Project project : arr) {
       if (project.getNo() == no) {
         return project;
       }
