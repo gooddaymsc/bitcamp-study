@@ -18,6 +18,8 @@ public class Exam0110 {
     queue.offer(s3); // aaa, bbb, ccc,
     print(queue);
 
+    // FIFO
+
     System.out.println("==>" + queue.poll()); // bbb, ccc,
     System.out.println("==>" + queue.poll()); // ccc,
     print(queue);

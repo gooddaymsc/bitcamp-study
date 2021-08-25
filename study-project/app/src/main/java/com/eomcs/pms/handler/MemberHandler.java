@@ -117,9 +117,8 @@ public class MemberHandler {
   }
 
   private Member findByNo(int no) {
-    Member[] members = new Member[memberList.size()];
-    memberList.toArray(members);
-    for (Member member : members) {
+    Member[] arr = memberList.toArray(new Member[0]);
+    for (Member member : arr) {
       if (member.getNo() == no) {
         return member;
       }
@@ -128,9 +127,8 @@ public class MemberHandler {
   }
 
   public boolean exist(String name) {
-    Object[] arr = memberList.toArray();
-    for (Object obj : arr) {
-      Member member = (Member) obj;
+    Member[] arr = memberList.toArray(new Member[0]);
+    for (Member member : arr) {
       if (member.getName().equals(name)) {
         return true;
       }
