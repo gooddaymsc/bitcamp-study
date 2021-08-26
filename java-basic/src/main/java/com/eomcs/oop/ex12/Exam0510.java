@@ -22,6 +22,9 @@ public class Exam0510 {
     // => 규격? 파라미터 타입 및 개수, 리턴 타입
     // => 문법:
     //    클래스명::메서드명
+
+    Calculator c0 = (x, y) -> x * y;
+
     Calculator c1 = MyCalculator::plus;
     Calculator c2 = MyCalculator::minus;
     Calculator c3 = MyCalculator::multiple;

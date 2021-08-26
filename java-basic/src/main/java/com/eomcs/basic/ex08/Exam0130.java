@@ -2,6 +2,7 @@
 package com.eomcs.basic.ex08;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Exam0130 {
 
@@ -30,15 +31,9 @@ public class Exam0130 {
         if (getClass() != obj.getClass())
           return false;
         MyKey other = (MyKey) obj;
-        if (major == null) {
-          if (other.major != null)
-            return false;
-        } else if (!major.equals(other.major))
-          return false;
-        if (no != other.no)
-          return false;
-        return true;
+        return Objects.equals(major, other.major) && no == other.no;
       }
+
     }
 
     MyKey k1 = new MyKey("컴공", 1);

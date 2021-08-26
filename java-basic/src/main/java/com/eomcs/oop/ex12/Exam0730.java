@@ -32,7 +32,10 @@ public class Exam0730 {
     // 인터페이스 메서드의 파라미터에 따라 호출할 생성자가 결정된다.
 
     Factory1 f1 = Message::new; // Message() 생성자를 가리킨다.
+
     Factory2 f2 = Message::new; // Message(String) 생성자를 가리킨다.
+    //    Factory2 f2 = name -> new Message();
+
 
     Message msg = f1.get(); // ==> new Message()
     msg.print();
