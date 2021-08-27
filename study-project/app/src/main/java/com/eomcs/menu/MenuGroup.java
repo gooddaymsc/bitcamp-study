@@ -91,19 +91,26 @@ public class MenuGroup extends Menu {
         System.out.printf("0. %s\n", this.prevMenuTitle);
       }
 
-      int menuNo = Prompt.inputInt("선택> ");
-      if (menuNo == 0 && !disablePrevMenu) {
-        // 현재 메뉴에서 나갈 때 스택에서 제거한다.
-        breadCrumb.pop();
-        return;
-      }
+      try {
+        int menuNo = Prompt.inputInt("선택> ");
+        if (menuNo == 0 && !disablePrevMenu) {
+          // 현재 메뉴에서 나갈 때 스택에서 제거한다.
+          breadCrumb.pop();
+          return;
+        }
 
-      if (menuNo < 0 || menuNo > this.size) {
-        System.out.println("무효한 메뉴 번호입니다.");
-        continue;
-      }
+        if (menuNo < 0 || menuNo > this.size) {
+          System.out.println("무효한 메뉴 번호입니다.");
+          continue;
+        }
 
-      this.childs[menuNo - 1].execute();
+        this.childs[menuNo - 1].execute();
+
+      } catch (Throwable e) {
+        System.out.println("---------------------------------------------");
+        System.out.printf("오류 발생: %s\n", e.getClass().getName());
+        System.out.println("---------------------------------------------");
+      }
     }
   }
 
