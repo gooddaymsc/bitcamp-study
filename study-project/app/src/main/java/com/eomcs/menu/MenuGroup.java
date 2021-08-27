@@ -69,7 +69,7 @@ public class MenuGroup extends Menu {
   // 배열에 들어 있는 Menu 객체를 찾는다.
   public Menu getMenu(String title) { 
     for (int i = 0; i < this.size; i++) {
-      if (this.childs[i].title.equals(title)) {
+      if (this.childs[i].title.equals(title)) { 
         return this.childs[i];
       }
     }
