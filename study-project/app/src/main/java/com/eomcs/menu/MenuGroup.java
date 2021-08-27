@@ -76,7 +76,7 @@ public class MenuGroup extends Menu {
     return null;
   }
 
-  @Override // 컴파일러에게 오버라이딩을 제대로 하는지 조사해 달라고 요구한다.
+  @Override // 컴파일러에게 오버라이딩을 제대로 하는지 조사해 달라고 요구한다...
   public void execute() {
     // 현재 실행하는 메뉴를 스택에 보관한다.
     breadCrumb.push(this);
