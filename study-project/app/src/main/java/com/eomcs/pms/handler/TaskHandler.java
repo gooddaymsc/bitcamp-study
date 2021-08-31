@@ -55,8 +55,8 @@ public class TaskHandler {
       System.out.println("작업 등록을 취소합니다.");
       return;
     }
-
     printTasks(project);
+
   }
 
   private void printTasks(Project project) {
@@ -67,7 +67,7 @@ public class TaskHandler {
           task.getContent(), 
           task.getDeadline(), 
           getStatusLabel(task.getStatus()), 
-          task.getOwner().getName());
+          task.getOwner().getName());  
     }
   }
 
@@ -76,13 +76,13 @@ public class TaskHandler {
 
     Project project = projectHandler.promptProject();
     if (project == null) {
-      System.out.println("작업 조회를 취소합니다.");
+      System.out.println("작업 조회을 취소합니다.");
       return;
     }
 
     printTasks(project);
 
-    System.out.println("-------------------------------------");
+    System.out.println("--------------------------");
 
     int taskNo = Prompt.inputInt("작업 번호? ");
 
@@ -114,7 +114,7 @@ public class TaskHandler {
 
     printTasks(project);
 
-    System.out.println("-------------------------------------");
+    System.out.println("--------------------------");
 
     int taskNo = Prompt.inputInt("변경할 작업 번호? ");
 
@@ -128,12 +128,13 @@ public class TaskHandler {
     Date deadline = Prompt.inputDate(String.format("마감일(%s)? ", task.getDeadline()));
     int status = promptStatus(task.getStatus());
     Member owner = MemberHandler.promptMember(
-        String.format("담당자(%s)?(취소: 빈 문자열) ", task.getOwner().getName()), 
+        String.format("담당자(%s)?(취소: 빈 문자열) ", task.getOwner().getName()),
         project.getMembers());
     if (owner == null) {
       System.out.println("작업 변경을 취소합니다.");
       return;
     }
+
 
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
     if (input.equalsIgnoreCase("n") || input.length() == 0) {
@@ -165,7 +166,7 @@ public class TaskHandler {
 
     printTasks(project);
 
-    System.out.println("-------------------------------------");
+    System.out.println("--------------------------");
 
     int taskNo = Prompt.inputInt("삭제할 작업 번호? ");
 
@@ -186,7 +187,7 @@ public class TaskHandler {
     System.out.println("작업를 삭제하였습니다.");
   }
 
-  private static String getStatusLabel(int status) {
+  private String getStatusLabel(int status) {
     switch (status) {
       case 1: return "진행중";
       case 2: return "완료";
@@ -194,11 +195,11 @@ public class TaskHandler {
     }
   }
 
-  private static int promptStatus() {
+  private int promptStatus() {
     return promptStatus(-1);
   }
 
-  private static int promptStatus(int status) {
+  private int promptStatus(int status) {
     if (status == -1) {
       System.out.println("상태?");
     } else {
@@ -210,7 +211,7 @@ public class TaskHandler {
     return Prompt.inputInt("> ");
   }
 
-  private static Task findByNo(Project project, int taskNo) {
+  private Task findByNo(Project project, int taskNo) {
     for (Task task : project.getTasks()) {
       if (task.getNo() == taskNo) {
         return task;
@@ -220,7 +221,6 @@ public class TaskHandler {
   }
 
 }
-
 
 
 

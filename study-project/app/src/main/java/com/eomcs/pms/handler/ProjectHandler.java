@@ -19,36 +19,32 @@ public class ProjectHandler {
     Project project = new Project();
     project.setNo(101);
     project.setTitle("프로젝트1");
-    project.setContent("내용!!!");
+    project.setContent("내용!!");
     project.setStartDate(Date.valueOf("2021-1-1"));
-    project.setEndDate(Date.valueOf("2021-2-2"));
+    project.setEndDate(Date.valueOf("2021-1-1"));
     project.setOwner(memberHandler.memberList.get(0));
-    project.setMembers(new ArrayList<>());
 
     projectList.add(project);
 
     project = new Project();
     project.setNo(102);
     project.setTitle("프로젝트2");
-    project.setContent("내용!!!");
+    project.setContent("내용!!");
     project.setStartDate(Date.valueOf("2021-3-1"));
     project.setEndDate(Date.valueOf("2021-4-2"));
     project.setOwner(memberHandler.memberList.get(1));
-    project.setMembers(new ArrayList<>());
 
     projectList.add(project);
 
     project = new Project();
     project.setNo(103);
     project.setTitle("프로젝트3");
-    project.setContent("내용!!!");
+    project.setContent("내용!!");
     project.setStartDate(Date.valueOf("2021-5-1"));
-    project.setEndDate(Date.valueOf("2021-6-2"));
+    project.setEndDate(Date.valueOf("2021-6-1"));
     project.setOwner(memberHandler.memberList.get(2));
-    project.setMembers(new ArrayList<>());
 
     projectList.add(project);
-
   }
 
   public void add() {
@@ -62,11 +58,10 @@ public class ProjectHandler {
     project.setStartDate(Prompt.inputDate("시작일? "));
     project.setEndDate(Prompt.inputDate("종료일? "));
     project.setOwner(AuthHandler.getLoginUser());
-    project.setMembers(memberHandler.promptMembers("팀원?(완료: 빈 문자열) "));
+    project.setMembers(new ArrayList<>());
 
     projectList.add(project);
 
-    System.out.println("프로젝트를 저장했습니다!");
   }
 
   //다른 패키지에 있는 App 클래스가 다음 메서드를 호출할 수 있도록 공개한다.
@@ -192,7 +187,7 @@ public class ProjectHandler {
   public Project promptProject() {
     System.out.println("프로젝트:");
     for (Project project : projectList) {
-      System.out.printf("  %d. %s\n", project.getNo(), project.getTitle());
+      System.out.printf(" %d. %s\n", project.getNo(),project.getTitle());
     }
     while (true) {
       int projectNo = Prompt.inputInt("프로젝트 번호 선택? (취소: 0) ");
@@ -208,7 +203,6 @@ public class ProjectHandler {
   }
 
 }
-
 
 
 

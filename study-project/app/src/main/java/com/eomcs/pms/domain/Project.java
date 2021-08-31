@@ -14,11 +14,13 @@ public class Project {
   private List<Member> members;
   private List<Task> tasks = new ArrayList<>();
 
+
+
   @Override
   public String toString() {
     return "Project [no=" + no + ", title=" + title + ", content=" + content + ", startDate="
         + startDate + ", endDate=" + endDate + ", owner=" + owner + ", members=" + members
-        + ", tasks=" + tasks + "]";
+        + ", task=" + tasks + "]";
   }
   public int getNo() {
     return no;
@@ -68,4 +70,6 @@ public class Project {
   public void setTasks(List<Task> tasks) {
     this.tasks = tasks;
   }
+
+
 }
