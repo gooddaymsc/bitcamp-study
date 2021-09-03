@@ -12,15 +12,6 @@ public class ProjectPrompt {
     this.projectList = projectList;
   }
 
-  protected Project findByNo(int no) {
-    for (Project project : projectList) {
-      if (project.getNo() == no) {
-        return project;
-      }
-    }
-    return null;
-  }
-
   public Project promptProject() {
     System.out.println("프로젝트:");
     for (Project project : projectList) {
@@ -37,5 +28,14 @@ public class ProjectPrompt {
       }
       System.out.println("프로젝트 번호가 옳지 않습니다.");
     }
+  }
+
+  protected Project findByNo(int no) {
+    for (Project project : projectList) {
+      if (project.getNo() == no) {
+        return project;
+      }
+    }
+    return null;
   }
 }
