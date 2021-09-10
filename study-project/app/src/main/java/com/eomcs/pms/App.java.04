@@ -113,101 +113,57 @@ public class App {
   }
 
   void service() {
-    loadMembers();
     loadBoards();
-    loadProjects();
 
     createMainMenu().execute();
     Prompt.close();
 
-    saveMembers();
     saveBoards();
-    saveProjects();
   }
 
-  @SuppressWarnings("unchecked")
   private void loadBoards() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("board.data3"))) {
+    try (
+        // 파일에서 바이트를 읽어 오는 일을 하는 객체
+        FileInputStream in = new FileInputStream("board.data2");
 
-      boardList.addAll((List<Board>) in.readObject());
+        // 직렬화 방식으로 출력된 바이트를 읽어 객체의 필드 값으로 복원하는 일을 하는 객체
+        ObjectInputStream in2 = new ObjectInputStream(in)) {
 
-      System.out.println("게시글 데이터 로딩 완료!");
+      // 게시글 개수를 먼저 읽는다.
+      int size = in2.readInt();
+
+      for (int i = 0; i < size; i++) {
+        boardList.add((Board)in2.readObject()); 
+        // writeObject() 로 출력한 바이트 데이터를 읽어서 원래 객체로 복원해 준다.
+      }
+
+      System.out.println("게시글 로딩 완료!");
 
     } catch (Exception e) {
-      System.out.println("파일에서 게시글 데이터를 읽어 오는 중 오류 발생!");
+      System.out.println("파일에서 게시글을 읽어 오는 중 오류 발생!");
       e.printStackTrace();
     }
   }
 
   private void saveBoards() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("board.data3"))) {
+    try (
+        // 파일에 바이트를 출력하는 객체
+        FileOutputStream out = new FileOutputStream("board.data2");
 
-      out.writeObject(boardList);
+        // 출력할 객체의 모든 필드 값을 바이트 배열에 담는 일을 하는 객체
+        ObjectOutputStream out2 = new ObjectOutputStream(out)) {
 
-      System.out.println("게시글 데이터 저장 완료!");
+      // 출력할 게시글 개수를 먼저 저장한다.
+      out2.writeInt(boardList.size());
 
-    } catch (Exception e) {
-      System.out.println("게시글 데이터를 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
+      for (Board board : boardList) {
+        out2.writeObject(board);
+      }
 
-  @SuppressWarnings("unchecked")
-  private void loadMembers() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("member.data3"))) {
-
-      memberList.addAll((List<Member>) in.readObject());
-
-      System.out.println("회원 데이터 로딩 완료!");
+      System.out.println("게시글 저장 완료!");
 
     } catch (Exception e) {
-      System.out.println("파일에서 회원 데이터를 읽어 오는 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  private void saveMembers() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("member.data3"))) {
-
-      out.writeObject(memberList);
-
-      System.out.println("회원 데이터 저장 완료!");
-
-    } catch (Exception e) {
-      System.out.println("회원 데이터를 파일에 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  @SuppressWarnings("unchecked")
-  private void loadProjects() {
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream("project.data3"))) {
-
-      projectList.addAll((List<Project>) in.readObject());
-
-      System.out.println("프로젝트 데이터 로딩 완료!");
-
-    } catch (Exception e) {
-      System.out.println("파일에서 프로젝트 데이터를 읽어 오는 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  private void saveProjects() {
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream("project.data3"))) {
-
-      out.writeObject(projectList);
-
-      System.out.println("프로젝트 데이터 저장 완료!");
-
-    } catch (Exception e) {
-      System.out.println("프로젝트 데이터를 파일에 저장 중 오류 발생!");
+      System.out.println("게시글을 파일에 저장 중 오류 발생!");
       e.printStackTrace();
     }
   }
