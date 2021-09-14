@@ -29,8 +29,8 @@ public class Score implements Serializable {
   // - transient는 변수의 성질을 변경(modifier)한다.
   // - 즉 serialize 되지 않도록 변경한다.
   //
-  transient int sum;
-  transient float aver;
+  transient  int sum;
+  transient  float aver;
 
   public Score() {
     System.out.println("Score() 생성자 호출!");
