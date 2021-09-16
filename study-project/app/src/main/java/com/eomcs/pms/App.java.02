@@ -3,15 +3,11 @@ package com.eomcs.pms;
 import static com.eomcs.menu.Menu.ACCESS_ADMIN;
 import static com.eomcs.menu.Menu.ACCESS_GENERAL;
 import static com.eomcs.menu.Menu.ACCESS_LOGOUT;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.nio.charset.Charset;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,8 +44,6 @@ import com.eomcs.pms.handler.TaskDetailHandler;
 import com.eomcs.pms.handler.TaskListHandler;
 import com.eomcs.pms.handler.TaskUpdateHandler;
 import com.eomcs.util.Prompt;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 
 public class App {
@@ -119,57 +113,81 @@ public class App {
   }
 
   void service() {
-    loadObjects("board.json", boardList, Board.class);
-    loadObjects("member.json", memberList, Member.class);
-    loadObjects("project.json", projectList, Project.class);
+
+    try (FileReader in = new FileReader("board.csv", Charset.forName("UTF-8"))) {
+
+      StringBuilder strBuilder = new StringBuilder();
+      int c;
+      while ((c = in.read()) != -1) {
+        // CSV 파일에서 줄바꿈을 의미하는 코드 중에서 CR 코드는 무시한다.
+        if (c == 0x0D) continue;
+
+        // CSV 파일에서 줄바꿈을 의미하는 코드 중에서 LF 코드는 만나면 
+        // 데이터를 객체로 바꾸는 일을 시작한다.
+        // 즉 한 줄을 읽었으면 값을 해석하여 객체에 담는다.
+        if (c == 0x0A) {
+
+          // 1) strBuilder 객체에 보관된 문자열을 꺼낸다.
+          String csvStr = strBuilder.toString();
+
+          // 2) 한 줄의 문자열을 콤마(,)로 분리한다.
+          String[] values = csvStr.split(",");
+
+          // 3) 콤마로 분리한 값을 Board 객체에 담는다.
+          Board b = new Board();
+          b.setNo(Integer.valueOf(values[0]));
+          b.setTitle(values[1]);
+          b.setContent(values[2]);
+          b.setRegisteredDate(Date.valueOf(values[3]));
+          b.setViewCount(Integer.valueOf(values[4]));
+          b.setLike(Integer.valueOf(values[5]));
+
+          // 4) 게시글을 작성한 회원 정보를 Member 객체에 담는다.
+          Member m = new Member();
+          m.setNo(Integer.valueOf(values[6]));
+          m.setName(values[7]);
+
+          // 5) Member 객체를 Board 객체의 작성자 필드에 저장한다.
+          b.setWriter(m);
+
+          // 6) 게시글 객체를 boardList 에 저장한다.
+          boardList.add(b);
+
+          // 7) 기존의 한 줄 데이터를 보관하고 있는 StringBuilder의 내용물을 비운다.
+          strBuilder.setLength(0);
+          continue;
+        }
+
+        // 일반적인 문자일 때는 StringBuilder에 보관한다.
+        strBuilder.append((char) c);
+      }
+
+      System.out.println("게시글 데이터 로딩 완료!");
+
+    } catch (Exception e) {
+      System.out.println("게시글 데이터 로딩 오류!");
+    }
 
     createMainMenu().execute();
     Prompt.close();
 
-    saveObjects("board.json", boardList);
-    saveObjects("member.json", memberList);
-    saveObjects("project.json", projectList);
-  }
-
-  private <E> void loadObjects(
-      String filepath, // 데이터를 읽어 올 파일 경로 
-      List<E> list, // 로딩한 데이터를 객체로 만든 후 저장할 목록 
-      Class<E> domainType // 생성할 객체의 타입정보
-      ) {
-
-    // CSV 형식으로 저장된 게시글 데이터를 파일에서 읽어 객체에 담는다. 
-    try (BufferedReader in = new BufferedReader(
-        new FileReader(filepath, Charset.forName("UTF-8")))) {
-
-      StringBuilder strBuilder = new StringBuilder();
-      String str;
-      while ((str = in.readLine()) != null) {
-        strBuilder.append(str);
+    // 게시글 데이터를 CSV 형식으로 출력한다.
+    try (FileWriter out = new FileWriter("board.csv", Charset.forName("UTF-8"))) {
+      for (Board board : boardList) {
+        out.write(String.format("%d,%s,%s,%s,%d,%d,%d,%s\n",
+            board.getNo(),
+            board.getTitle(),
+            board.getContent(),
+            board.getRegisteredDate(),
+            board.getViewCount(),
+            board.getLike(),
+            board.getWriter().getNo(),
+            board.getWriter().getName()));
       }
-
-      Type type = TypeToken.getParameterized(Collection.class, domainType).getType();
-      Collection<E> collection = new Gson().fromJson(strBuilder.toString(), type);
-
-
-      System.out.printf("%s 데이터 로딩 완료!\n", filepath);
+      System.out.println("게시글 데이터 출력 완료!");
 
     } catch (Exception e) {
-      System.out.printf("%s 데이터 로딩 오류!\n", filepath);
-    }
-  }
-
-  private void saveObjects(String filepath, List<?> list) {
-    try (PrintWriter out = new PrintWriter(
-        new BufferedWriter(
-            new FileWriter(filepath, Charset.forName("UTF-8"))))) {
-
-      out.print(new Gson().toJson(list));
-
-      System.out.printf("%s 데이터 출력 완료!\n", filepath);
-
-    } catch (Exception e) {
-      System.out.printf("%s 데이터 출력 오류!\n", filepath);
-      e.printStackTrace();
+      System.out.println("게시글 데이터 출력 오류!");
     }
   }
 
