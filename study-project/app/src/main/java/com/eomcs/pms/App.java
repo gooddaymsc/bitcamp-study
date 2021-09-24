@@ -80,7 +80,7 @@ public class App {
     public void execute() {
       Command command = commandMap.get(menuId);
       try {
-        command.execute(new CommandRequest(commandMap));
+        command.execute(new CommandRequest());
       } catch (Exception e) {
         System.out.printf("%s 명령을 실행하는 중 오류 발생!\n", menuId);
         e.printStackTrace();
@@ -94,12 +94,11 @@ public class App {
   }
 
   public App() {
-
     commandMap.put("/board/add", new BoardAddHandler(boardList));
     commandMap.put("/board/list", new BoardListHandler(boardList));
+    commandMap.put("/board/detail", new BoardDetailHandler(boardList));
     commandMap.put("/board/update", new BoardUpdateHandler(boardList));
     commandMap.put("/board/delete", new BoardDeleteHandler(boardList));
-    commandMap.put("/board/detail", new BoardDetailHandler(boardList));
     commandMap.put("/board/search", new BoardSearchHandler(boardList));
 
     commandMap.put("/member/add", new MemberAddHandler(memberList));

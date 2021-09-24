@@ -5,12 +5,9 @@ import java.util.Map;
 
 public class CommandRequest {
 
-  Map<String,Command> commandMap;
   Map<String,Object> paramMap = new HashMap<>();
 
-  public CommandRequest(Map<String,Command> commandMap) {
-    this.commandMap = commandMap;
-  }
+  Map<String,Command> commandMap;
 
   public void setAttribute(String name, Object value) {
     paramMap.put(name, value);
@@ -27,4 +24,5 @@ public class CommandRequest {
     }
     return new RequestDispatcher(command);
   }
+
 }
