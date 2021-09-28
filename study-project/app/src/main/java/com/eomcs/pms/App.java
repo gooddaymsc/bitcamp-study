@@ -138,7 +138,6 @@ public class App {
     for (ApplicationContextListener listener : listeners) {
       listener.contextInitialized(params);
     }
-
   }
 
   private void notifyOnApplicationEnded() {
