@@ -22,8 +22,6 @@ public class MenuGroup extends Menu {
   // 메뉴 목록을 출력할 때 출력 여부를 결정할 객체를 보관한다.
   MenuFilter menuFilter;
 
-
-
   // 이전으로 이동시키는 메뉴를 표현하기 위해 만든 클래스
   private static class PrevMenu extends Menu {
     public PrevMenu() {
@@ -139,9 +137,9 @@ public class MenuGroup extends Menu {
       // 사용자가 해당 메뉴에 접근 할 수 있는지 검사한다.
       //    예) 메뉴의 접근 범위:   0100  = 관리자만 접근 가능   
       //        사용자의 접근 수준: 0110  = 관리자 및 일반 메뉴 접근 가능
-      //        if ((menu.accessScope & AuthLoginHandler.getUserAccessLevel()) > 0 ) {
-      //          menuList.add(menu);
-      //        } 
+      //      if ((menu.accessScope & AuthLoginHandler.getUserAccessLevel()) > 0 ) {
+      //        menuList.add(menu);
+      //      } 
     }
     return menuList;
   }
@@ -169,7 +167,7 @@ public class MenuGroup extends Menu {
     }
 
     if (menuNo == 0 && !disablePrevMenu) {
-      return prevMenu; // 호출한 쪽에 '이전 메뉴' 선택을 알리게 위해 
+      return prevMenu; // 호출한 쪽에 '이전 메뉴' 선택을 알리기 위해 
     } 
 
     return menuList.get(menuNo - 1);

@@ -14,7 +14,7 @@ public class MemberAddHandler implements Command {
   }
 
   @Override
-  public void execute(CommandRequest request) throws Exception{
+  public void execute(CommandRequest request) throws Exception {
     System.out.println("[회원 등록]");
 
     Member member = new Member();
@@ -32,7 +32,7 @@ public class MemberAddHandler implements Command {
     if (requestAgent.getStatus().equals(RequestAgent.SUCCESS)) {
       System.out.println("회원을 등록했습니다.");
     } else {
-      System.out.println("회원 등록을 실패했습니다.");
+      System.out.println("회원 등록 실패!");
     }
   }
 }
