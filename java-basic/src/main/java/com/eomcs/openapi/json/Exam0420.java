@@ -8,7 +8,7 @@ public class Exam0420 {
 
     String jsonStr = "{\"no\":1,\"title\":\"제목\",\"content\":\"내용\",\"writer\":{\"no\":100,\"name\":\"홍길동\",\"email\":\"hong@test.com\",\"password\":\"1111\",\"photo\":\"hong.gif\",\"tel\":\"010-2222-1111\",\"registeredDate\":\"9월 16, 2021\"},\"registeredDate\":\"9월 16, 2021\",\"viewCount\":98,\"like\":5}";
 
-    Project b = new Gson().fromJson(jsonStr, Project.class);
+    Board b = new Gson().fromJson(jsonStr, Board.class);
 
     System.out.println(b);
   }
