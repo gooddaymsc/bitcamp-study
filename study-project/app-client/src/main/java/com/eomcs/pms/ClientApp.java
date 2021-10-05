@@ -10,6 +10,9 @@ import com.eomcs.context.ApplicationContextListener;
 import com.eomcs.menu.Menu;
 import com.eomcs.menu.MenuFilter;
 import com.eomcs.menu.MenuGroup;
+import com.eomcs.pms.dao.impl.NetBoardDao;
+import com.eomcs.pms.dao.impl.NetMemberDao;
+import com.eomcs.pms.dao.impl.NetProjectDao;
 import com.eomcs.pms.handler.AuthLoginHandler;
 import com.eomcs.pms.handler.AuthLogoutHandler;
 import com.eomcs.pms.handler.AuthUserInfoHandler;
@@ -104,40 +107,45 @@ public class ClientApp {
   public ClientApp() throws Exception {
 
     // 서버와 통신을 담당할 객체 준비
-    requestAgent = new RequestAgent("192.168.0.33", 8888);
+    requestAgent = new RequestAgent("127.0.0.1", 8888);
+
+    // 데이터 관리를 담당할 DAO 객체를 준비한다.
+    NetBoardDao boardDao = new NetBoardDao(requestAgent);
+    NetMemberDao memberDao = new NetMemberDao(requestAgent);
+    NetProjectDao projectDao = new NetProjectDao(requestAgent);
 
     // Command 객체 준비
-    commandMap.put("/member/add", new MemberAddHandler(requestAgent));
-    commandMap.put("/member/list", new MemberListHandler(requestAgent));
-    commandMap.put("/member/detail", new MemberDetailHandler(requestAgent));
-    commandMap.put("/member/update", new MemberUpdateHandler(requestAgent));
-    commandMap.put("/member/delete", new MemberDeleteHandler(requestAgent));
+    commandMap.put("/member/add", new MemberAddHandler(memberDao));
+    commandMap.put("/member/list", new MemberListHandler(memberDao));
+    commandMap.put("/member/detail", new MemberDetailHandler(memberDao));
+    commandMap.put("/member/update", new MemberUpdateHandler(memberDao));
+    commandMap.put("/member/delete", new MemberDeleteHandler(memberDao));
 
-    commandMap.put("/board/add", new BoardAddHandler(requestAgent));
-    commandMap.put("/board/list", new BoardListHandler(requestAgent));
-    commandMap.put("/board/detail", new BoardDetailHandler(requestAgent));
-    commandMap.put("/board/update", new BoardUpdateHandler(requestAgent));
-    commandMap.put("/board/delete", new BoardDeleteHandler(requestAgent));
-    commandMap.put("/board/search", new BoardSearchHandler(requestAgent));
+    commandMap.put("/board/add", new BoardAddHandler(boardDao));
+    commandMap.put("/board/list", new BoardListHandler(boardDao));
+    commandMap.put("/board/detail", new BoardDetailHandler(boardDao));
+    commandMap.put("/board/update", new BoardUpdateHandler(boardDao));
+    commandMap.put("/board/delete", new BoardDeleteHandler(boardDao));
+    commandMap.put("/board/search", new BoardSearchHandler(boardDao));
 
     commandMap.put("/auth/login", new AuthLoginHandler(requestAgent));
     commandMap.put("/auth/logout", new AuthLogoutHandler());
     commandMap.put("/auth/userinfo", new AuthUserInfoHandler());
 
-    MemberPrompt memberPrompt = new MemberPrompt(requestAgent);
+    MemberPrompt memberPrompt = new MemberPrompt(memberDao);
 
-    commandMap.put("/project/add", new ProjectAddHandler(requestAgent, memberPrompt));
-    commandMap.put("/project/list", new ProjectListHandler(requestAgent));
-    commandMap.put("/project/detail", new ProjectDetailHandler(requestAgent));
-    commandMap.put("/project/update", new ProjectUpdateHandler(requestAgent, memberPrompt));
-    commandMap.put("/project/delete", new ProjectDeleteHandler(requestAgent));
+    commandMap.put("/project/add", new ProjectAddHandler(projectDao, memberPrompt));
+    commandMap.put("/project/list", new ProjectListHandler(projectDao));
+    commandMap.put("/project/detail", new ProjectDetailHandler(projectDao));
+    commandMap.put("/project/update", new ProjectUpdateHandler(projectDao, memberPrompt));
+    commandMap.put("/project/delete", new ProjectDeleteHandler(projectDao));
 
-    ProjectPrompt projectPrompt = new ProjectPrompt(requestAgent);
-    commandMap.put("/task/add", new TaskAddHandler(requestAgent, projectPrompt));
+    ProjectPrompt projectPrompt = new ProjectPrompt(projectDao);
+    commandMap.put("/task/add", new TaskAddHandler(projectDao, projectPrompt));
     commandMap.put("/task/list", new TaskListHandler(projectPrompt));
     commandMap.put("/task/detail", new TaskDetailHandler(projectPrompt));
-    commandMap.put("/task/update", new TaskUpdateHandler(requestAgent, projectPrompt));
-    commandMap.put("/task/delete", new TaskDeleteHandler(requestAgent, projectPrompt));
+    commandMap.put("/task/update", new TaskUpdateHandler(projectDao, projectPrompt));
+    commandMap.put("/task/delete", new TaskDeleteHandler(projectDao, projectPrompt));
   }
 
   // MenuGroup에서 사용할 필터를 정의한다.

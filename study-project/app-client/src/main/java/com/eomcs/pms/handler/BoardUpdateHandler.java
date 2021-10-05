@@ -1,16 +1,15 @@
 package com.eomcs.pms.handler;
 
-import java.util.HashMap;
+import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
-import com.eomcs.request.RequestAgent;
 import com.eomcs.util.Prompt;
 
 public class BoardUpdateHandler implements Command {
 
-  RequestAgent requestAgent;
+  BoardDao boardDao;
 
-  public BoardUpdateHandler(RequestAgent requestAgent) {
-    this.requestAgent = requestAgent;
+  public BoardUpdateHandler(BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
 
   @Override
@@ -18,17 +17,12 @@ public class BoardUpdateHandler implements Command {
     System.out.println("[게시글 변경]");
     int no = (int) request.getAttribute("no");
 
-    HashMap<String,String> params = new HashMap<>();
-    params.put("no", String.valueOf(no));
+    Board board = boardDao.findByNo(no);
 
-    requestAgent.request("board.selectOne", params);
-
-    if (requestAgent.getStatus().equals(RequestAgent.FAIL)) {
+    if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다.");
       return;
     }
-
-    Board board = requestAgent.getObject(Board.class);
 
     if (board.getWriter().getNo() != AuthLoginHandler.getLoginUser().getNo()) {
       System.out.println("변경 권한이 없습니다.");
@@ -44,16 +38,10 @@ public class BoardUpdateHandler implements Command {
       return;
     }
 
+
     board.setTitle(title);
     board.setContent(content);
-
-    requestAgent.request("board.update", board);
-
-    if (requestAgent.getStatus().equals(RequestAgent.FAIL)) {
-      System.out.println("게시글 변경 실패!");
-      System.out.println(requestAgent.getObject(String.class));
-      return;
-    }
+    boardDao.update(board);
 
     System.out.println("게시글을 변경하였습니다.");
   }
