@@ -36,7 +36,7 @@ public class MemberDeleteHandler extends HttpServlet {
 
     out.println("<html>");
     out.println("<head>");
-    out.println("   <title>회원삭제</title>");
+    out.println("  <title>회원삭제</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원삭제결과</h1>");
@@ -50,17 +50,18 @@ public class MemberDeleteHandler extends HttpServlet {
         out.println("해당 번호의 회원이 없습니다.<br>");
 
       } else {
-
         memberDao.delete(no);
         sqlSession.commit();
 
         out.println("회원을 삭제하였습니다.<br>");
-      }
+      }      
 
       out.println("<a href='list'>[목록]<a><br>");
+
     } catch (Exception e) {
       throw new ServletException(e);
     }
+
     out.println("</body>");
     out.println("</html>");
   }

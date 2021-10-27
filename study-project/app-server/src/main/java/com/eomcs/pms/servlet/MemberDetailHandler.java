@@ -31,9 +31,10 @@ public class MemberDetailHandler extends GenericServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
+    out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("   <title>회원상세</title>");
+    out.println("  <title>회원상세</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원 상세</h1>");
@@ -47,7 +48,7 @@ public class MemberDetailHandler extends GenericServlet {
         out.println("해당 번호의 회원이 없습니다.");
 
       } else {
-        out.printf("<form action='update'>");
+        out.println("<form action='update'>");
         out.printf("번호: <input type='text' name='no' value='%d' readonly><br>\n", member.getNo());
         out.printf("이름: <input type='text' name='name' value='%s'><br>\n", member.getName());
         out.printf("이메일: <input type='text' name='email' value='%s'><br>\n", member.getEmail());
@@ -57,14 +58,15 @@ public class MemberDetailHandler extends GenericServlet {
         out.printf("등록일: %s<br>", member.getRegisteredDate());
         out.println();
 
-        out.println("<button>[변경]</button>");
+        out.println("<button>변경</button>");
         out.printf(" <a href='delete?no=%d'>[삭제]</a>", member.getNo());
         out.println(" <a href='list'>[목록]</a><br>");
-        out.printf("</form>");
+        out.println("</form>");
       }
     } catch (Exception e) {
       throw new ServletException(e);
     }
+
     out.println("</body>");
     out.println("</html>");
   }

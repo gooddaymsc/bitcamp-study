@@ -36,7 +36,7 @@ public class MemberUpdateHandler extends HttpServlet {
 
     out.println("<html>");
     out.println("<head>");
-    out.println("   <title>회원변경</title>");
+    out.println("  <title>회원변경</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원변경결과</h1>");
@@ -47,8 +47,8 @@ public class MemberUpdateHandler extends HttpServlet {
       Member member = memberDao.findByNo(no);
 
       if (member == null) {
-        System.out.println("해당 번호의 회원이 없습니다.<br>");
-        return;
+        out.println("해당 번호의 회원이 없습니다.<br>");
+
       } else {
 
         member.setName(request.getParameter("name"));
@@ -60,12 +60,15 @@ public class MemberUpdateHandler extends HttpServlet {
         memberDao.update(member);
         sqlSession.commit();
 
-        out.println("회원을 변경했습니다.<br>");
+        out.println("회원을 변경하였습니다.<br>");
+
         out.println("<a href='list'>[목록]</a><br>");
       }
+
     } catch (Exception e) {
       throw new ServletException(e);
     }
+
     out.println("</body>");
     out.println("</html>");
   }

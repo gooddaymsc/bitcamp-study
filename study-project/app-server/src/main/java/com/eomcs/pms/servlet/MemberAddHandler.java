@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.eomcs.pms.dao.MemberDao;
 import com.eomcs.pms.domain.Member;
 
+
 @WebServlet("/member/add")
 public class MemberAddHandler extends HttpServlet {
   private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class MemberAddHandler extends HttpServlet {
 
     out.println("<html>");
     out.println("<head>");
-    out.println("   <title>회원등록</title>");
+    out.println("  <title>회원등록</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원등록결과</h1>");
@@ -54,11 +55,13 @@ public class MemberAddHandler extends HttpServlet {
       sqlSession.commit();
 
       out.println("회원을 등록했습니다.<br>");
+
       out.println("<a href='list'>[목록]</a><br>");
 
     } catch (Exception e) {
       throw new ServletException(e);
     }
+
     out.println("</body>");
     out.println("</html>");
   }

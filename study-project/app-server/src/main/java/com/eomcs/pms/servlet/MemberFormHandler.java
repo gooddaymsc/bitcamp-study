@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/member/form")
-public class MemberFromHandler extends HttpServlet {
+public class MemberFormHandler extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -21,7 +22,7 @@ public class MemberFromHandler extends HttpServlet {
 
     out.println("<html>");
     out.println("<head>");
-    out.println("   <title>새회원</title>");
+    out.println("  <title>새회원</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>새회원</h1>");
