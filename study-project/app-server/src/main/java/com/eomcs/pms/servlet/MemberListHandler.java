@@ -40,7 +40,7 @@ public class MemberListHandler extends GenericServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원 목록</h1>");
-    out.println("<div><a href='form'>새회원</a></div>");
+    out.println("<a href='form'>새회원</a><br>");
     out.println("<table border='1'>");
     out.println("<thead>");
     out.println("  <tr>");
@@ -49,8 +49,8 @@ public class MemberListHandler extends GenericServlet {
     out.println("    <th>이메일</th>");
     out.println("    <th>전화</th>");
     out.println("    <th>등록일</th>");
-    out.println("  <tr>");
-    out.println("</thread>");
+    out.println("  </tr>");
+    out.println("</thead>");
     out.println("<tbody>");
     try {
       Collection<Member> memberList = memberDao.findAll();
@@ -62,7 +62,7 @@ public class MemberListHandler extends GenericServlet {
             + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%s</td>"
-            + "</tr>", 
+            + "</tr>\n", 
             member.getNo(), 
             member.getName(), 
             member.getEmail(), 
