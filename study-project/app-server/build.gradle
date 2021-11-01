@@ -35,8 +35,9 @@ repositories {
 //    등록한 라이브러를 자동으로 다운로드 받는다.
 // => 이렇게 다운로드 받은 라이브러리는 컴파일하거나 실행할 때 사용된다.
 dependencies {
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+    implementation 'javax.servlet:jstl:1.2'
     implementation 'com.google.code.gson:gson:2.8.8'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.guava:guava:30.1-jre'
