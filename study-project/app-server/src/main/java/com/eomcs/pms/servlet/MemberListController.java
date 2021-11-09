@@ -37,7 +37,10 @@ public class MemberListController extends GenericServlet {
       request.setAttribute("memberList", memberList);
 
       // 출력을 담당할 뷰를 호출한다.
-      RequestDispatcher 요청배달자 = request.getRequestDispatcher("/member/MemberList.jsp");
+      request.setAttribute("pageTitle", "회원목록");
+      request.setAttribute("contentUrl", "/member/MemberList.jsp");
+
+      RequestDispatcher 요청배달자 = request.getRequestDispatcher("/template1.jsp");
       요청배달자.forward(request, response);
 
     } catch (Exception e) {

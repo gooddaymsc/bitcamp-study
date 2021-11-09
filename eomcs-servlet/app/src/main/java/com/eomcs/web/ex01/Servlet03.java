@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 //    HttpServlet을 상속 받아 서블릿 클래스를 만들라!
 // 
 public class Servlet03 extends HttpServlet {
-  
+
   // GenericServlet 추상 클래스가 java.io.Serialize 인터페이스를 구현하였고,
   // HttpServlet 클래스가 GenericServlet 추상 클래스를 상속 받았으니
   // HttpServlet 클래스를 상속 받는 이 클래스도 마찬가지로
