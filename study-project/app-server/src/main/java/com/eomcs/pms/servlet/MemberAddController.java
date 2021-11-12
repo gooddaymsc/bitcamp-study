@@ -46,7 +46,9 @@ public class MemberAddController extends HttpServlet {
       member.setPassword(request.getParameter("password"));
       member.setTel(request.getParameter("tel"));
 
+      System.out.println("00000");
       Part photoPart = request.getPart("photo");
+      System.out.println("11111");
       if (photoPart.getSize() > 0) {
         String filename = UUID.randomUUID().toString();
         photoPart.write(getServletContext().getRealPath("/upload/member") + "/" + filename);
