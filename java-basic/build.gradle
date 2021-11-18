@@ -8,11 +8,14 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework:spring-context:5.3.13'
     implementation 'org.mybatis:mybatis:3.5.7'
+    implementation 'org.mybatis:mybatis-spring:2.0.6'
     implementation 'com.google.code.gson:gson:2.8.8'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.guava:guava:30.1-jre'
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
     implementation 'com.oracle.database.jdbc:ojdbc11:21.3.0.0'
     implementation 'com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre11'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
 }
