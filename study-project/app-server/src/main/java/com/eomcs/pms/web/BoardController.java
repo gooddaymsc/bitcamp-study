@@ -2,23 +2,23 @@ package com.eomcs.pms.web;
 
 import java.util.Collection;
 import javax.servlet.http.HttpSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.eomcs.pms.dao.BoardDao;
 import com.eomcs.pms.domain.Board;
 import com.eomcs.pms.domain.Member;
+import com.eomcs.pms.service.BoardService;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
-  @Autowired SqlSessionFactory sqlSessionFactory;
-  @Autowired BoardDao boardDao;
+  @Autowired BoardService boardService;
 
-  @GetMapping("/board/form")
+  @GetMapping("form")
   public ModelAndView form() {
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "새 글");
@@ -27,22 +27,21 @@ public class BoardController {
     return mv;
   }
 
-  @PostMapping("/board/add")
+  @PostMapping("add")
   public ModelAndView add(Board board, HttpSession session) throws Exception {
 
     board.setWriter((Member) session.getAttribute("loginUser"));
 
-    boardDao.insert(board);
-    sqlSessionFactory.openSession().commit();
+    boardService.add(board);
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
     return mv;
   }
 
-  @GetMapping("/board/list")
+  @GetMapping("list")
   public ModelAndView list() throws Exception {
-    Collection<Board> boardList = boardDao.findAll();
+    Collection<Board> boardList = boardService.list();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("boardList", boardList);
@@ -52,15 +51,13 @@ public class BoardController {
     return mv;
   }
 
-  @GetMapping("/board/detail")
+  @GetMapping("detail")
   public ModelAndView detail(int no) throws Exception {
-    Board board = boardDao.findByNo(no);
+    Board board = boardService.get(no);
 
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다.");
     }
-
-    boardDao.updateCount(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("board", board);
@@ -70,32 +67,30 @@ public class BoardController {
     return mv;
   }
 
-  @PostMapping("/board/update")
+  @PostMapping("update")
   public ModelAndView update(Board board) throws Exception {
 
-    Board oldBoard = boardDao.findByNo(board.getNo());
+    Board oldBoard = boardService.get(board.getNo());
     if (oldBoard == null) {
       throw new Exception("해당 번호의 게시글이 없습니다.");
     } 
 
-    boardDao.update(board);
-    sqlSessionFactory.openSession().commit();
+    boardService.update(board);
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
     return mv;
   }
 
-  @GetMapping("/board/delete")
+  @GetMapping("delete")
   public ModelAndView delete(int no) throws Exception {
 
-    Board board = boardDao.findByNo(no);
+    Board board = boardService.get(no);
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다.");
     }
 
-    boardDao.delete(no);
-    sqlSessionFactory.openSession().commit();
+    boardService.remove(no);
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
